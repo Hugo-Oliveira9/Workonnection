@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="style.home.css">
+</head>
+<body>
+    <header class="top-bar">
+        <div class="logo">WORKCONNECTON</div>
+        <input type="text" placeholder="Pesquisar">
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Notificações</a>
+            <a href="#">Vagas</a>
+            <a href="#">Colaboradores</a>
+            <a href="#">Perfil</a>
+            <a href="#">FAQ/Dúvidas</a>
+            <a href="#">Sobre</a>
+            <a href="#">Configurações</a>
+            <a href="#" onclick="logout()">Logout</a>
+
+        </nav>
+    </header>
+
+    <div class="filtros">
+        <button>✅ Todas as vagas</button>
+        <button>💙 Favoritas</button>
+        <button>📁 Outros Filtros</button>
+    </div>
+
+    <section class="vagas">
+        <h2>Vagas compatíveis com o seu perfil</h2>
+
+        <div class="vaga">
+            <div class="icone"></div>
+            <div class="info">
+                <strong>Rio Natural Essências</strong><br>
+                Cargo: Consultor de Vendas Naturais e Bem-Estar<br>
+                Localização: Mangaratiba-RJ<br>
+                <button>Exibir</button>
+            </div>
+        </div>
+
+        <div class="vaga">
+            <div class="icone"></div>
+            <div class="info">
+                <strong>Juliana Ribeiro</strong><br>
+                Cargo: Capitão e Coordenador de Operações Náuticas<br>
+                Localização: Angra dos Reis-RJ<br>
+                <button>Exibir</button>
+            </div>
+        </div>
+
+        <div class="vaga">
+            <div class="icone"></div>
+            <div class="info">
+                <strong>Tech Marítima</strong><br>
+                Cargo: Técnico em Manutenção de Embarcações<br>
+                Localização: Niterói-RJ<br>
+                <button>Exibir</button>
+            </div>
+        </div>
+
+        <div class="vaga">
+            <div class="icone"></div>
+            <div class="info">
+                <strong>Mar Azul Turismo</strong><br>
+                Cargo: Guia Turístico Náutico<br>
+                Localização: Paraty-RJ<br>
+                <button>Exibir</button>
+            </div>
+        </div>
+
+        <div class="ver-mais">Exibir tudo</div>
+    </section>
+</body>
+    <script src="home.js"></script>
+</html>

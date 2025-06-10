@@ -1,0 +1,177 @@
+.header {
+    display: flex;
+    align-items: center;
+    background-color: #c46f6f;
+    padding: 10px 20px;
+    color: white;
+    gap: 10px;
+}
+
+.header .logo {
+    height: 90px;
+}
+
+.header h1 {
+    font-size: 24px;
+    margin-left: 10px;
+}
+
+.cadastro-container {
+    display: flex;
+    justify-content: center;
+    padding: 30px 15px;
+    background-color: #fff;
+}
+
+.form-box {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    max-width: 700px;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.form-box h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.user-type-box p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.user-types {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.user-types button {
+    padding: 10px 15px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    background-color: #e7f5fb;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.user-types button:hover {
+    background-color: #c8e9f4;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.btn-back {
+    background-color: #5ec3e6;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+}
+
+.btn-submit {
+    background-color: #d86b6b;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+}
+
+.btn-back:hover {
+    background-color: #4aa2bd;
+}
+
+.btn-submit:hover {
+    background-color: #bb5555;
+}
+
+
+
+.header {
+    position: relative;
+    background-color: #d86b6b;
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.header img {
+    height: 40px;
+    margin-left: 20px;
+}
+
+/* Título centralizado */
+.header h1 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 32px;
+    color: #000000;
+    margin: 0;
+}
+
+/*opções dos botões*/
+
+.hidden {
+  display: none;
+}
+
+.user-box {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+}
+
+.user-btn {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+.user-btn:hover {
+  background-color: #e0f0f0;
+}

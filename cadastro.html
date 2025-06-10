@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Workonnection</title>
+    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style1-1.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+ 
+</head>
+<body>
+    <header class="header">
+        <img src="img/Logo Workonnection.png" alt="Logo Workonnection" class="logo">
+        <h1>Cadastro</h1>
+    </header>
+
+    <main class="cadastro-container">
+        <section class="form-box">
+            <h2>Dados Pessoais</h2>
+            <form>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label><span>👤</span> Nome</label>
+                        <input type="text" placeholder="Digite seu nome">
+                    </div>
+                    <div class="input-group">
+                        <label><span>🆔</span> CPF</label>
+                        <input type="text" placeholder="000.000.000-00">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label><span>📅</span> Data Nascimento</label>
+                        <input type="date" value="2000-01-01">
+                    </div>
+                    <div class="input-group">
+                        <label><span>📞</span> Telefone</label>
+                        <input type="text" placeholder="(099999999)">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <label><span>📧</span> Email</label>
+                        <input type="email" placeholder="usuarioPessoa@teste.com">
+                    </div>
+                    <div class="input-group">
+                        <label><span>🔒</span> Senha</label>
+                        <input type="password" placeholder="Senha (8 caracteres)">
+                    </div>
+                </div>
+
+                <div class="user-type-box">
+  <div class="user-type-box">
+    <p><strong>Tipo de Usuário:</strong></p>
+    <button type="button" class="user-btn" onclick="showBox('empresaBox')">🏢 Empresa</button>
+    <button type="button" class="user-btn" onclick="showBox('meBox')">🏢 ME</button>
+    <button type="button" class="user-btn" onclick="showBox('meiBox')">🏢 MEI</button>
+    <button type="button" class="user-btn" onclick="showBox('estudanteBox')">🎓 Estudante</button>
+
+  </div>
+
+  <!-- Empresa -->
+  <div id="empresaBox" class="user-box hidden">
+    <h3>Documentos sobre a Empresa</h3>
+    <div class="field-group"><label>Razão Social</label><input type="text" placeholder="Razão Social"></div>
+    <div class="field-group"><label>Quantidade Funcionários</label><input type="text" placeholder="Ex: 200"></div>
+    <div class="field-group"><label>Tempo de mercado</label><input type="text" placeholder="Ex: 20 anos"></div>
+    <div class="field-group"><label>Telefone</label><input type="text" placeholder="(99)9999999"></div>
+    <div class="field-group"><label>CNPJ</label><input type="text" placeholder="Cadastro Nacional da Pessoa Jurídica"></div>
+    <div class="field-group"><label>Contrato Social</label><input type="text" placeholder="Contrato Social"></div>
+    <div class="field-group"><label>IE</label><input type="text" placeholder="Inscrição Estadual ou Municipal"></div>
+    <div class="field-group"><label>Ramo de atuação</label><input type="text" placeholder="Ex: Varejo"></div>
+  </div>
+
+  <!-- ME -->
+  <div id="meBox" class="user-box hidden">
+    <h3>Documentos sobre a Microempresa</h3>
+    <div class="field-group"><label>Razão Social</label><input type="text" placeholder="Razão Social"></div>
+    <div class="field-group"><label>Quantidade Funcionários</label><input type="text" placeholder="Ex: 200"></div>
+    <div class="field-group"><label>Tempo de mercado</label><input type="text" placeholder="Ex: 20 anos"></div>
+    <div class="field-group"><label>Telefone</label><input type="text" placeholder="(99)9999999"></div>
+    <div class="field-group"><label>CNPJ</label><input type="text" placeholder="Cadastro Nacional da Pessoa Jurídica"></div>
+    <div class="field-group"><label>Contrato Social</label><input type="text" placeholder="Contrato Social"></div>
+    <div class="field-group"><label>IE</label><input type="text" placeholder="Inscrição Estadual ou Municipal"></div>
+    <div class="field-group"><label>Ramo de atuação</label><input type="text" placeholder="Ex: Varejo"></div>
+  </div>
+
+  <!-- MEI -->
+  <div id="meiBox" class="user-box hidden">
+    <h3>Documentos sobre o MEI</h3>
+    <div class="field-group"><label>Razão Social</label><input type="text" placeholder="Razão Social"></div>
+    <div class="field-group"><label>Tempo de mercado</label><input type="text" placeholder="Ex: 20 anos"></div>
+    <div class="field-group"><label>Telefone</label><input type="text" placeholder="(99)9999999"></div>
+    <div class="field-group"><label>CNPJ</label><input type="text" placeholder="Cadastro Nacional da Pessoa Jurídica"></div>
+    <div class="field-group"><label>Contrato Social</label><input type="text" placeholder="Contrato Social"></div>
+    <div class="field-group"><label>IE</label><input type="text" placeholder="Inscrição Estadual ou Municipal"></div>
+    <div class="field-group"><label>Ramo de atuação</label><input type="text" placeholder="Ex: Varejo"></div>
+  </div>
+
+  <!-- Estudante -->
+  <div id="estudanteBox" class="user-box hidden">
+    <h3>Documentos do Estudante</h3>
+    <div class="field-group"><label>Curso</label><input type="text" placeholder="Curso"></div>
+    <div class="field-group"><label>Período</label><input type="text" placeholder="Período"></div>
+    <div class="field-group"><label>Ano de Conclusão</label><input type="text" placeholder="Ano de Conclusão"></div>
+    <div class="field-group"><label>Instituição</label><input type="text"placeholder="Exe: FATEC">
+ </div>
+
+
+
+
+<div class="buttons">
+ <button type="button" onclick="window.location.href='login.html'" class="btn-back">⬅ Voltar</button>
+ <button type="button" onclick="window.location.href='home.html'" class="btn-submit">➜ Cadastrar</button>
+
+</div>
+            </form>
+        </section>
+    </main>
+</body>
+   <script src="JScadastro.js"></script>
+</html>

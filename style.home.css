@@ -25,11 +25,23 @@ body {
     width: 200px;
 }
 
+/* 🔹 NAV estilizada */
 .top-bar nav a {
     margin: 0 10px;
     text-decoration: none;
-    color: #000;
+    color: #fff;
     font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background-color: #c75c5c;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+}
+
+.top-bar nav a:hover {
+    background-color: #fff;
+    color: #c75c5c;
+    border: 1px solid #c75c5c;
 }
 
 .filtros {
@@ -59,10 +71,11 @@ body {
     font-size: 18px;
 }
 
+/* 🔸 Bordas mais grossas */
 .vaga {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
+    border: 3px solid #ccc;
     border-radius: 10px;
     padding: 30px;
     margin-bottom: 25px;
@@ -71,12 +84,16 @@ body {
     background-color: #f9f9f9;
 }
 
+/* 🔸 Imagem de usuário genérica */
 .vaga .icone {
     width: 70px;
     height: 70px;
     background-color: #ccc;
     border-radius: 50%;
     margin-right: 25px;
+    background-image: url('https://www.w3schools.com/howto/img_avatar.png');
+    background-size: cover;
+    background-position: center;
 }
 
 .vaga .info {

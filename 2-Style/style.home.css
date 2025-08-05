@@ -1,0 +1,111 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+}
+
+.top-bar {
+    background-color: #e8a4a4;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.top-bar .logo {
+    color: #00bff3;
+    font-weight: bold;
+    margin-right: 20px;
+}
+
+.top-bar input[type="text"] {
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    width: 200px;
+}
+
+/* 🔹 NAV estilizada */
+.top-bar nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background-color: #c75c5c;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+}
+
+.top-bar nav a:hover {
+    background-color: #fff;
+    color: #c75c5c;
+    border: 1px solid #c75c5c;
+}
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.filtros button {
+    background-color: white;
+    border: 2px solid #00bff3;
+    color: #00bff3;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.vagas {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.vagas h2 {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* 🔸 Bordas mais grossas */
+.vaga {
+    display: flex;
+    align-items: center;
+    border: 3px solid #ccc;
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 25px;
+    min-height: 140px;
+    font-size: 18px;
+    background-color: #f9f9f9;
+}
+
+/* 🔸 Imagem de usuário genérica */
+.vaga .icone {
+    width: 70px;
+    height: 70px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-right: 25px;
+    background-image: url('https://www.w3schools.com/howto/img_avatar.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.vaga .info {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.ver-mais {
+    text-align: center;
+    color: #000;
+    font-weight: bold;
+    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+}

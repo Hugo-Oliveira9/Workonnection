@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro - Workonnection</title>
+  <link rel="stylesheet" href="/2-Style/styleCadastro.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="header">
+    <img src="/6-Imagens/Logo Workonnection.png" alt="Logo Workonnection" class="logo">
+    <h1>Cadastro</h1>
+  </header>
+
+  <main class="cadastro-container">
+    <section class="form-box">
+      <h2>Dados Pessoais</h2>
+      <form>
+        <div class="form-row">
+          <div class="input-group">
+            <label><i class="fas fa-user"></i> Nome</label>
+            <input type="text" placeholder="Digite seu nome" id="nomeDadosPessoais" required>
+          </div>
+          <div class="input-group">
+            <label><i class="fas fa-id-card"></i> CPF</label>
+            <input type="text" placeholder="000.000.000-00" id="cpfDadosPessoais" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-group">
+            <label><i class="fas fa-calendar"></i> Data Nascimento</label>
+            <input type="date" value="01/01/1900" id="dataNascimentoDadosPessoais" required>
+          </div>
+          <div class="input-group">
+            <label><i class="fas fa-phone"></i> Telefone</label>
+            <input type="text" placeholder="DD 00000-0000" id="telefoneDadosPessoais" required>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="input-group">
+            <label><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" placeholder="Digite o seu melhor email" id="emailDadosPessoais" required>
+          </div>
+          <div class="input-group">
+            <label><i class="fas fa-lock"></i> Senha</label>
+            <input type="password" placeholder="Crie uma senha segura" id="senhaDadosPessoais" required>
+          </div>
+        </div>
+
+        <!-- Tipo de Usuário -->
+        <p class="user-label">Possui ou se identifica com esses usuários?</p>
+
+        <div class="user-type-box" id="userTypeBox">
+        <label><strong>Tipo de Usuário:</strong></label>
+        <div class="user-type-buttons">
+            <button type="button" class="user-btn" data-target="#empresaBox" aria-pressed="false">
+            <i class="fas fa-building"></i> Empresa
+            </button>
+            <button type="button" class="user-btn" data-target="#meBox" aria-pressed="false">
+            <i class="fas fa-building"></i> ME
+            </button>
+            <button type="button" class="user-btn" data-target="#meiBox" aria-pressed="false">
+            <i class="fas fa-building"></i> MEI
+            </button>
+            <button type="button" class="user-btn" data-target="#estudanteBox" aria-pressed="false">
+            <i class="fas fa-graduation-cap"></i> Estudante
+            </button>
+        </div>
+        </div>
+
+        <!-- Empresa -->
+        <div id="empresaBox" class="user-box collapsible">
+        <h3>Documentos sobre a Empresa</h3>
+        <br>
+        <div class="field-group"><label><i class="fas fa-building"></i> Razão Social</label><input type="text" placeholder="Razão Social"></div>
+        <div class="field-group"><label><i class="fas fa-users"></i> Quantidade Funcionários</label><input type="text" placeholder="Ex: 200"></div>
+        <div class="field-group"><label><i class="fas fa-clock"></i> Tempo de mercado</label><input type="text" placeholder="Ex: 20 anos"></div>
+        <div class="field-group"><label><i class="fas fa-phone"></i> Telefone</label><input type="text" placeholder="(99)9999999"></div>
+        <div class="field-group"><label><i class="fas fa-id-badge"></i> CNPJ</label><input type="text" placeholder="Cadastro Nacional da Pessoa Jurídica"></div>
+        <div class="field-group"><label><i class="fas fa-file-contract"></i> Contrato Social</label><input type="text" placeholder="Contrato Social"></div>
+        <div class="field-group"><label><i class="fas fa-file-alt"></i> IE</label><input type="text" placeholder="Inscrição Estadual ou Municipal"></div>
+        <div class="field-group"><label><i class="fas fa-briefcase"></i> Ramo de atuação</label><input type="text" placeholder="Ex: Varejo"></div>
+        </div>
+
+        <!-- ME -->
+        <div id="meBox" class="user-box collapsible">
+        <h3>Documentos sobre a Microempresa</h3>
+        <br>
+        <div class="field-group"><label><i class="fas fa-building"></i> Razão Social</label><input type="text" placeholder="Razão Social"></div>
+        <div class="field-group"><label><i class="fas fa-users"></i> Quantidade Funcionários</label><input type="text" placeholder="Ex: 200"></div>
+        <div class="field-group"><label><i class="fas fa-clock"></i> Tempo de mercado</label><input type="text" placeholder="Ex: 20 anos"></div>
+        <div class="field-group"><label><i class="fas fa-phone"></i> Telefone</label><input type="text" placeholder="(99)9999999"></div>
+        <div class="field-group"><label><i class="fas fa-id-badge"></i> CNPJ</label><input type="text" placeholder="Cadastro Nacional da Pessoa Jurídica"></div>
+        <div class="field-group"><label><i class="fas fa-file-contract"></i> Contrato Social</label><input type="text" placeholder="Contrato Social"></div>
+        <div class="field-group"><label><i class="fas fa-file-alt"></i> IE</label><input type="text" placeholder="Inscrição Estadual ou Municipal"></div>
+        <div class="field-group"><label><i class="fas fa-briefcase"></i> Ramo de atuação</label><input type="text" placeholder="Ex: Varejo"></div>
+        </div>
+
+        <!-- MEI -->
+        <div id="meiBox" class="user-box collapsible">
+        <h3>Documentos sobre o MEI</h3>
+        <br>
+        <div class="field-group"><label><i class="fas fa-building"></i> Razão Social</label><input type="text" placeholder="Razão Social"></div>
+        <div class="field-group"><label><i class="fas fa-clock"></i> Tempo de mercado</label><input type="text" placeholder="Ex: 20 anos"></div>
+        <div class="field-group"><label><i class="fas fa-phone"></i> Telefone</label><input type="text" placeholder="(99)9999999"></div>
+        <div class="field-group"><label><i class="fas fa-id-badge"></i> CNPJ</label><input type="text" placeholder="Cadastro Nacional da Pessoa Jurídica"></div>
+        <div class="field-group"><label><i class="fas fa-file-contract"></i> Contrato Social</label><input type="text" placeholder="Contrato Social"></div>
+        <div class="field-group"><label><i class="fas fa-file-alt"></i> IE</label><input type="text" placeholder="Inscrição Estadual ou Municipal"></div>
+        <div class="field-group"><label><i class="fas fa-briefcase"></i> Ramo de atuação</label><input type="text" placeholder="Ex: Varejo"></div>
+        </div>
+
+        <!-- Estudante -->
+        <div id="estudanteBox" class="user-box collapsible">
+        <h3>Documentos do Estudante</h3>
+        <br>
+        <div class="field-group"><label><i class="fas fa-book"></i> Curso</label><input type="text" placeholder="Curso"></div>
+        <div class="field-group"><label><i class="fas fa-clock"></i> Período</label><input type="text" placeholder="Período"></div>
+        <div class="field-group"><label><i class="fas fa-calendar-alt"></i> Ano de Conclusão</label><input type="text" placeholder="Ano de Conclusão"></div>
+        <div class="field-group"><label><i class="fas fa-school"></i> Instituição</label><input type="text" placeholder="Ex: FATEC"></div>
+        </div>
+
+        <div class="buttons">
+          <button type="button" class="btn-back"><i class="fas fa-arrow-left"></i>Voltar</button>
+          <button type="submit" class="btn-submit"><i class="fas fa-check"></i>Cadastrar</button>
+        </div>
+
+      </form>
+    </section>
+  </main>
+
+    <script src="/3-Tipo-usuarios/cadastro.js"></script>
+    <script src="/4-LocalStorage/salvarDados.js"></script>
+</body>
+</html>

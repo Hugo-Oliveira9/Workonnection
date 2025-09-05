@@ -1,111 +1,142 @@
 body {
-    margin: 0;
+    background: #f9f9f9;
     font-family: Arial, sans-serif;
-    background-color: #ffffff;
 }
 
-.top-bar {
-    background-color: #e8a4a4;
-    display: flex;
-    align-items: center;
+/* Top navbar */
+.topbar {
+    background: #d86b6b;
     padding: 10px;
-    justify-content: space-between;
-}
-
-.top-bar .logo {
-    color: #00bff3;
-    font-weight: bold;
-    margin-right: 20px;
-}
-
-.top-bar input[type="text"] {
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    width: 200px;
-}
-
-/* 🔹 NAV estilizada */
-.top-bar nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: #fff;
-    font-size: 14px;
-    padding: 8px 12px;
-    border-radius: 10px;
-    background-color: #c75c5c;
-    transition: background-color 0.3s, color 0.3s;
-    font-weight: bold;
-}
-
-.top-bar nav a:hover {
-    background-color: #fff;
-    color: #c75c5c;
-    border: 1px solid #c75c5c;
-}
-
-.filtros {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px 0;
-}
-
-.filtros button {
-    background-color: white;
-    border: 2px solid #00bff3;
-    color: #00bff3;
-    padding: 10px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-.vagas {
-    width: 80%;
-    margin: 0 auto;
-}
-
-.vagas h2 {
-    margin-bottom: 20px;
-    font-size: 18px;
-}
-
-/* 🔸 Bordas mais grossas */
-.vaga {
     display: flex;
     align-items: center;
-    border: 3px solid #ccc;
-    border-radius: 10px;
-    padding: 30px;
-    margin-bottom: 25px;
-    min-height: 140px;
-    font-size: 18px;
-    background-color: #f9f9f9;
+    justify-content: space-between;
+    color: white;
 }
 
-/* 🔸 Imagem de usuário genérica */
-.vaga .icone {
-    width: 70px;
-    height: 70px;
-    background-color: #ccc;
-    border-radius: 50%;
-    margin-right: 25px;
-    background-image: url('https://www.w3schools.com/howto/img_avatar.png');
-    background-size: cover;
-    background-position: center;
-}
-
-.vaga .info {
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-.ver-mais {
-    text-align: center;
-    color: #000;
+.topbar .logo {
     font-weight: bold;
-    margin-top: 20px;
+    font-size: 20px;
+}
+
+.search-bar {
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    padding: 6px 12px;
+}
+
+.top-icons i {
+    font-size: 18px;
+    margin: 0 10px;
     cursor: pointer;
+}
+
+/* Filtros */
+.filtros {
+    padding: 15px;
+    font-weight: bold;
+}
+
+/* Card de vaga */
+.vaga-card {
+    background: rgb(255, 255, 255);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px;
+    border: 1px solid black; /* borda fininha preta */
+}
+
+.vaga-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.vaga-header img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.vaga-header h5 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.vaga-body p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.vaga-footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+    border-radius: 12px;
+    padding: 8px;
+    font-size: 18px;
+}
+
+.vaga-footer button {
+    border: none; /* remove borda extra */
+    border-radius: 8px;
     font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.15s ease-in-out, box-shadow 0.3s ease;
+}
+
+.vaga-footer button:hover {
+    background-color: #47a4c4; /* você pode trocar conforme a cor do botão */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(1.03);
+}
+
+.vaga-footer button:active {
+    transform: scale(0.97);
+}
+
+.comment-bar {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid #ccc; /* borda cinza suave */
+    padding: 8px 12px;
+    margin-top: 10px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.comment-bar:focus {
+    border-color: #5ec3e6;
+    box-shadow: 0 0 6px rgba(94, 195, 230, 0.4);
+    outline: none;
+}
+
+.interacao {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.interacao button {
+    background: none;   /* sem fundo */
+    border: none;       /* sem borda */
+    font-size: 26px;    /* aumenta o tamanho do ícone */
+    color: #555;        /* cor do ícone */
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+}
+
+.interacao button:hover {
+    transform: scale(1.2); /* dá zoom no hover */
+    color: #000;           /* escurece no hover */
+}
+
+.interacao button:active {
+    transform: scale(0.9); /* efeito "click" */
 }

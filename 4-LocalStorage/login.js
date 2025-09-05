@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }));
 
       // Redireciona para a página inicial do sistema
-      window.location.href = '/3-Paginas/home.html';
+      window.location.href = '/3-Paginas/HomeTeste.html';
     } else {
       // Se email ou senha estiverem errados
       alert('Email ou senha incorretos.');

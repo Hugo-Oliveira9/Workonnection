@@ -1,80 +1,71 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>WorkConnection</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/2-Style/style.home.css">
 </head>
 <body>
-    <header class="top-bar">
-    <div class="logo">WORKCONNECTON</div>
-    <input type="text" placeholder="Pesquisar">
-    <nav>
-        <a class="nav-btn" href="#">Home</a>
-        <a class="nav-btn" href="#">Notificações</a>
-        <a class="nav-btn" href="#">Vagas</a>
-        <a class="nav-btn" href="#">Colaboradores</a>
-        <a class="nav-btn" href="#">Perfil</a>
-        <a class="nav-btn" href="#">FAQ/Dúvidas</a>
-        <a class="nav-btn" href="#">Sobre</a>
-        <a class="nav-btn" href="#">Configurações</a>
-        <a class="nav-btn" href="#" onclick="logout()">Logout</a>
-    </nav>
-</header>
 
-    <div class="filtros">
-        <button>✅ Todas as vagas</button>
-        <button>💙 Favoritas</button>
-        <button>📁 Outros Filtros</button>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="logo">WORKCONNECTION</div>
+        <div class="search-bar">
+            <input type="text" placeholder="Pesquisar">
+        </div>
+        <div class="top-icons">
+            <i class="fas fa-home"></i>
+            <i class="fas fa-bell"></i>
+            <i class="fas fa-briefcase"></i>
+            <i class="fas fa-users"></i>
+            <i class="fas fa-user"></i>
+            <i class="fas fa-question-circle"></i>
+            <i class="fas fa-info-circle"></i>
+            <i class="fas fa-cog"></i>
+        </div>
     </div>
 
-    <section class="vagas">
-        <h2>Vagas compatíveis com o seu perfil</h2>
+    <!-- Filtros -->
+    <div class="filtros">
+        <button class="btn btn-outline-dark btn-sm filtro-btn">
+            <i class="fas fa-filter"></i> Filtros
+        </button>
+    </div>
 
-        <div class="vaga">
-            <div class="icone"></div>
-            <div class="info">
-                <strong>Rio Natural Essências</strong><br>
-                Cargo: Consultor de Vendas Naturais e Bem-Estar<br>
-                Localização: São Paulo - SP<br>
-                <button>Exibir</button>
+    <!-- Card de vaga -->
+    <div class="vaga-card">
+        <div class="vaga-header">
+            <img src="/6-Imagens/FotosPerfis/Tech-Soluciones.png" alt="Logo Empresa">
+            <div>
+                <h5>Tech Soluciones</h5>
+                <small>Desenvolvimento de Software</small>
             </div>
         </div>
-
-        <div class="vaga">
-            <div class="icone"></div>
-            <div class="info">
-                <strong>Juliana Ribeiro</strong><br>
-                Cargo: Capitão e Coordenador de Operações Náuticas<br>
-                Localização: Itaquera - SP<br>
-                <button>Exibir</button>
-            </div>
+        <div class="vaga-body">
+            <p><b>Cargo:</b> Assistente de Suporte Técnico</p>
+            <p><b>Descrição:</b> Auxílio remoto a clientes com problemas básicos de hardware e software.</p>
+            <p><b>Modalidade:</b> Remoto | Presencial | Híbrido</p>
+            <p><b>Localização:</b> São Paulo - SP</p>
+        </div>
+        <div class="vaga-footer">
+            <button class="btn btn-success btn-sm">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </button>
+            <button class="btn btn-danger btn-sm">
+                <i class="fas fa-comment"></i> Chat (FAQ)
+            </button>
         </div>
 
-        <div class="vaga">
-            <div class="icone"></div>
-            <div class="info">
-                <strong>Tech-Acre</strong><br>
-                Cargo: Estagio em Suporte de Ti ao Cliente<br>
-                Localização: Rio Branco - AC<br>
-                Desc: Intercambista<br>
-                <button>Exibir</button>
-            </div>
+        <div class="interacao">
+            <button><i class="fas fa-thumbs-up"></i></button>
+            <button><i class="fas fa-thumbs-down"></i></button>
+            <input type="text" class="comment-bar" placeholder="Comentar...">
         </div>
+    </div>
 
-        <div class="vaga">
-            <div class="icone"></div>
-            <div class="info">
-                <strong>Mar Azul Turismo</strong><br>
-                Cargo: Guia Turístico Náutico<br>
-                Localização: São Jose do Rio Preto - SP<br>
-                <button>Exibir</button>
-            </div>
-        </div>
-
-        <div class="ver-mais">Exibir tudo</div>
-    </section>
 </body>
-    <script src="/5-Javascrip/home.js"></script>
 </html>

@@ -49,6 +49,8 @@ body {
     padding: 15px;
     margin: 15px;
     border: 1px solid black; /* borda fininha preta */
+    margin-left: 50px;
+    margin-right: 50px;
 }
 
 .vaga-header {

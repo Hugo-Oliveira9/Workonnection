@@ -20,22 +20,35 @@
             <input type="text" placeholder="Pesquisar">
         </div>
         <div class="top-icons">
-            <i class="fas fa-home"></i>
-            <i class="fas fa-bell"></i>
-            <i class="fas fa-briefcase"></i>
-            <i class="fas fa-users"></i>
-            <i class="fas fa-user"></i>
-            <i class="fas fa-question-circle"></i>
-            <i class="fas fa-info-circle"></i>
-            <i class="fas fa-cog"></i>
+            <a href="Home.html"><i class="fas fa-home"></i></a>
+            <a href="Notificacao.html"><i class="fas fa-bell"></i></a>
+            <a href="Vagas.html"><i class="fas fa-briefcase"></i></a>
+            <a href="Colaboradores.html"><i class="fas fa-users"></i></a>
+            <a href="Perfil.html"><i class="fas fa-user"></i></a>
+            <a href="Duvidas.html"><i class="fas fa-question-circle"></i></a>
+            <a href="Sobre.html"><i class="fas fa-info-circle"></i></a>
+            <a href="Configuracoes.html"><i class="fas fa-cog"></i></a>
         </div>
     </div>
 
     <!-- Filtros -->
     <div class="filtros">
-        <button class="btn btn-outline-dark btn-sm filtro-btn">
-            <i class="fas fa-filter"></i> Filtros
-        </button>
+        <div class="dropdown">
+            <button class="btn btn-outline-dark btn-sm filtro-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-filter"></i> Filtros
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#"><input type="checkbox" data-filter="remoto"> Remoto</a></li>
+                <li><a class="dropdown-item" href="#"><input type="checkbox" data-filter="presencial"> Presencial</a></li>
+                <li><a class="dropdown-item" href="#"><input type="checkbox" data-filter="hibrido"> Híbrido</a></li>
+                <li><a class="dropdown-item" href="#"><input type="checkbox" data-filter="sp"> São Paulo - SP</a></li>
+                <li><a class="dropdown-item" href="#"><input type="checkbox" data-filter="pr"> Curitiba - PR</a></li>
+                <li><a class="dropdown-item" href="#"><input type="checkbox" data-filter="design"> Design</a></li>
+                <li><a class="dropdown-item" href="#"><input type="checkbox" data-filter="desenvolvimento"> Desenvolvimento</a></li>
+                <!-- Botão dentro do dropdown -->
+                <li><button class="btn btn-primary btn-sm w-100" onclick="aplicarFiltros()">Aplicar Filtros</button></li>
+            </ul>
+        </div>
     </div>
 
     <!-- Vaga 1 -->
@@ -54,17 +67,17 @@
             <p><b>Localização:</b> São Paulo - SP</p>
         </div>
         <div class="vaga-footer">
-            <button class="btn btn-success btn-sm">
+            <button class="btn btn-success btn-sm" onclick="openWhatsApp('Tech Soluciones', 'São Paulo - SP')">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </button>
-            <button class="btn btn-danger btn-sm">
+            <button class="btn btn-danger btn-sm" onclick="openChat('Tech Soluciones')">
                 <i class="fas fa-comment"></i> Chat (FAQ)
             </button>
         </div>
         <div class="interacao">
-            <button><i class="fas fa-thumbs-up"></i></button>
-            <button><i class="fas fa-thumbs-down"></i></button>
-            <input type="text" class="comment-bar" placeholder="Comentar...">
+            <button onclick="tumbsUp('vaga1')"><i class="fas fa-thumbs-up"></i></button>
+            <button onclick="tumbsDown('vaga1')"><i class="fas fa-thumbs-down"></i></button>
+            <input type="text" class="comment-bar" placeholder="Comentar..." onkeydown="handleComment(event, vaga1)">
         </div>
     </div>
 
@@ -84,17 +97,17 @@
             <p><b>Localização:</b> Curitiba - PR</p>
         </div>
         <div class="vaga-footer">
-            <button class="btn btn-success btn-sm">
+            <button class="btn btn-success btn-sm" onclick="openWhatsApp('WebStart', 'Curitiba - PR')">
                 <i class="fab fa-whatsapp"></i> WhatsApp
             </button>
-            <button class="btn btn-danger btn-sm">
+            <button class="btn btn-danger btn-sm" onclick="openChat('WebStart')">
                 <i class="fas fa-comment"></i> Chat (FAQ)
             </button>
         </div>
         <div class="interacao">
-            <button><i class="fas fa-thumbs-up"></i></button>
-            <button><i class="fas fa-thumbs-down"></i></button>
-            <input type="text" class="comment-bar" placeholder="Comentar...">
+            <button onclick="thumbsUp('vaga2')"><i class="fas fa-thumbs-up"></i></button>
+            <button onclick="thumbsDown('vaga2')"><i class="fas fa-thumbs-down"></i></button>
+            <input type="text" class="comment-bar" placeholder="Comentar..." onkeydown="handleComment(event, 'vaga2')">
         </div>
     </div>
 
@@ -104,6 +117,7 @@
     </button>
 
     <script src="/5-Javascrip/home.js"></script>
+    <script src="/5-Javascrip/interacaoHome.js"></script>
 
 </body>
 </html>

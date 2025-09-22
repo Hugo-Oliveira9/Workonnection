@@ -24,8 +24,6 @@ const contas = [
 window.onload = function () {
   const usuario = localStorage.getItem("usuario");
   const logado = localStorage.getItem("logado");
-
-
 }
 
 function logout() {

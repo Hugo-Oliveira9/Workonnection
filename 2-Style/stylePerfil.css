@@ -1,0 +1,151 @@
+body {
+    background: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+/* Topbar */
+.topbar {
+    background: #d86b6b;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.search-bar {
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    padding: 6px 12px;
+}
+
+.top-icons i {
+    font-size: 18px;
+    margin: 0 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.top-icons i:hover {
+    color: #e6e6e6;
+}
+
+/* Filtros */
+.filtros {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Card de vaga */
+.perfil-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 60px 60px;
+    border: 1px solid #ccc;
+}
+
+.perfil-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.perfil-header img {
+    width: 150px;      /* define a largura */
+    height: 150px;     /* mesma altura para manter o círculo */
+    border-radius: 50%; 
+    margin-right: 15px;
+    object-fit: cover; /* garante que a imagem preencha o círculo sem deformar */
+}
+
+.perfil-header h6 {
+    margin: 0;
+    font-weight: bold;
+}
+
+.container{
+    margin-top: 3%;
+}
+.perfil-dados h5 {
+    font-weight: bold;       /* deixa em negrito */
+    font-size: 1.2rem;       /* aumenta um pouco o tamanho */
+    margin: 0;               /* remove margens extras */
+}
+
+.perfil-dados small {
+    color: #888888;          /* deixa os textos pequenos em cinza */
+}
+
+.contatos {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* espaço entre os contatos */
+}
+
+.contato-item {
+    text-decoration: none;  /* remove sublinhado */
+    color: #333;            /* cor padrão do texto */
+    font-weight: 500;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;               /* espaço entre ícone e texto */
+}
+
+.contato-item i {
+    min-width: 20px;        /* mantém ícones alinhados */
+    text-align: center;
+}
+
+.contato-item:hover {
+    color: #007bff;         /* muda a cor ao passar o mouse */
+    transform: translateX(3px); /* leve movimento para feedback visual */
+}
+.analise-footer {
+    background-color: #f1f1f1;  
+    border-radius: 10px;         
+    margin-top: 10px;            
+    padding: 10px 15px;          /* adiciona espaçamento interno */
+    
+    display: flex;               /* ativa flexbox */
+    align-items: center;         /* centraliza verticalmente */
+    justify-content: flex-start; /* mantém alinhado à esquerda */
+    gap: 8px;    
+    margin-bottom: 20px;                /* espaço entre ícone e texto */
+}
+.analise-footer p {
+    margin: 0;  /* remove margem padrão */
+}
+
+.feedback-card {
+    display: flex;
+    align-items: flex-start;  /* alinha a imagem com o topo do texto */
+    gap: 10px;                /* espaço entre a imagem e o texto */
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.feedback-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;        /* deixa a imagem redonda */
+    object-fit: cover;         /* mantém proporção da imagem */
+}
+
+.feedback-text h6 {
+    margin: 0 0 5px 0;         /* remove margem superior e ajusta espaçamento */
+}
+
+.feedback-text p {
+    margin: 0;
+    color: #555;
+}

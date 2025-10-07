@@ -1,16 +1,23 @@
 body {
     background: #f9f9f9;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* Topbar */
 .topbar {
     background: #d86b6b;
-    padding: 10px;
+    padding: 12px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.topbar .logo img {
+    height: 45px;
 }
 
 .search-bar {
@@ -20,56 +27,111 @@ body {
 
 .search-bar input {
     width: 100%;
-    border-radius: 20px;
+    border-radius: 25px;
     border: none;
-    padding: 6px 12px;
+    padding: 8px 16px;
+    font-size: 14px;
 }
 
 .top-icons i {
-    font-size: 18px;
-    margin: 0 10px;
+    font-size: 20px;
+    margin: 0 8px;
     cursor: pointer;
     color: white;
+    transition: color 0.3s, transform 0.2s;
 }
+
 .top-icons i:hover {
-    color: #e6e6e6;
+    color: #ffe5e5;
+    transform: scale(1.2);
 }
 
 /* Filtros */
-.filtros {
-    margin: 15px 0;
+.filtros-vagas {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    padding: 0 10px;
+}
+
+.filtro-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #444;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.filtro-item i {
+    font-size: 16px;
+}
+
+.filtro-item:hover,
+.filtro-item.ativo {
+    color: #d86b6b;
 }
 
 /* Notificação */
 .notificacao-card {
     background: #fff;
-    border-radius: 12px;
-    padding: 12px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding: 12px 15px;
+    margin: 12px 0;
+    border: 1px solid #ddd;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.notificacao-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
 .notificacao-card img {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
+    object-fit: cover;
     margin-right: 12px;
+    border: 2px solid #5ec3e6;
 }
 
 .notificacao-card p {
     margin: 0;
     flex-grow: 1;
     font-size: 15px;
+    color: #333;
 }
 
 .notificacao-card i {
     color: #555;
     cursor: pointer;
+    transition: color 0.3s, transform 0.2s;
 }
+
 .notificacao-card i:hover {
-    color: #000;
+    color: #d86b6b;
+    transform: scale(1.2);
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    min-width: 120px;
+}
+
+/* Mensagem de vazio */
+#sem-notificacoes {
+    font-size: 15px;
+    color: #888;
+    margin-top: 20px;
+}
+
+/* Container */
+.container {
+    margin-top: 30px;
 }

@@ -1,21 +1,23 @@
 body {
     background: #f9f9f9;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 /* Top navbar */
 .topbar {
     background: #d86b6b;
-    padding: 10px;
+    padding: 12px 20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
-.topbar .logo {
-    font-weight: bold;
-    font-size: 20px;
+.topbar .logo img {
+    height: 45px;
 }
 
 .search-bar {
@@ -25,133 +27,177 @@ body {
 
 .search-bar input {
     width: 100%;
-    border-radius: 20px;
+    border-radius: 25px;
     border: none;
-    padding: 6px 12px;
+    padding: 8px 16px;
+    font-size: 14px;
 }
 
 .top-icons i {
-    font-size: 18px;
-    margin: 0 10px;
+    font-size: 20px;
+    margin: 0 8px;
     cursor: pointer;
-    color: white; /* Define a cor do ícone como branco */
+    color: white;
+    transition: color 0.3s, transform 0.2s;
 }
 
 .top-icons i:hover {
-    color: #e6e6e6; /* Uma cor cinza bem suave, se preferir */
+    color: #ffe5e5;
+    transform: scale(1.2);
 }
 
-/* Filtros */
-.filtros {
-    padding: 15px;
-    font-weight: bold;
+/* Filtros de vagas */
+.filtros-vagas {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin: 20px 50px 10px;
+}
+
+.filtro-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #555;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.filtro-item i {
+    font-size: 16px;
+}
+
+.filtro-item:hover,
+.filtro-item.ativo {
+    color: #d86b6b;
+    background-color: #ffeaea;
 }
 
 /* Card de vaga */
 .vaga-card {
-    background: rgb(255, 255, 255);
-    border-radius: 12px;
-    padding: 15px;
-    margin: 15px;
-    border: 1px solid #ccc; /* borda fininha preta */
-    margin-left: 50px;
-    margin-right: 50px;
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 50px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.vaga-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12);
 }
 
 .vaga-header {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .vaga-header img {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 12px;
+    border: 2px solid #5ec3e6;
 }
 
 .vaga-header h5 {
     margin: 0;
     font-size: 18px;
+    color: #333;
 }
 
 .vaga-body p {
-    margin: 5px 0;
+    margin: 6px 0;
     font-size: 14px;
+    color: #555;
 }
 
+/* Footer dos cards */
 .vaga-footer {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
-    margin-top: 10px;
-    border-radius: 12px;
-    padding: 8px;
-    font-size: 18px;
+    gap: 15px;
+    margin-top: 12px;
 }
 
 .vaga-footer button {
-    border: none; /* remove borda extra */
+    border: none;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-    transition: background-color 0.3s, transform 0.15s ease-in-out, box-shadow 0.3s ease;
+    padding: 6px 12px;
+    transition: 0.3s;
 }
 
-.vaga-footer button:hover {
-    background-color: #47a4c4; /* você pode trocar conforme a cor do botão */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-    transform: scale(1.03);
+.vaga-footer .btn-success {
+    background-color: #47a4c4;
 }
 
-.vaga-footer button:active {
-    transform: scale(0.97);
+.vaga-footer .btn-success:hover {
+    background-color: #3a8ba3;
+}
+
+.vaga-footer .btn-danger {
+    background-color: #d86b6b;
+}
+
+.vaga-footer .btn-danger:hover {
+    background-color: #b35959;
+}
+
+/* Comentários e interação */
+.interacao {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.interacao button {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #555;
+    cursor: pointer;
+    transition: transform 0.2s, color 0.3s;
+}
+
+.interacao button:hover {
+    transform: scale(1.3);
+    color: #d86b6b;
+}
+
+.interacao button:active {
+    transform: scale(0.95);
 }
 
 .comment-bar {
-    width: 100%;
-    border-radius: 20px;
-    border: 1px solid #ccc; /* borda cinza suave */
-    padding: 8px 12px;
-    margin-top: 10px;
+    flex-grow: 1;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    padding: 8px 14px;
+    font-size: 14px;
     transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .comment-bar:focus {
-    border-color: #5ec3e6;
-    box-shadow: 0 0 6px rgba(94, 195, 230, 0.4);
+    border-color: #47a4c4;
+    box-shadow: 0 0 6px rgba(71,164,196,0.4);
     outline: none;
 }
 
-.interacao {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-}
-
-.interacao button {
-    background: none;   /* sem fundo */
-    border: none;       /* sem borda */
-    font-size: 26px;    /* aumenta o tamanho do ícone */
-    color: #555;        /* cor do ícone */
-    cursor: pointer;
-    transition: transform 0.2s ease, color 0.3s ease;
-}
-
-.interacao button:hover {
-    transform: scale(1.2); /* dá zoom no hover */
-    color: #000;           /* escurece no hover */
-}
-
-.interacao button:active {
-    transform: scale(0.9); /* efeito "click" */
-}
-
+/* Botão flutuante */
 .botao-publicar {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
+    bottom: 25px;
+    right: 25px;
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -161,5 +207,12 @@ body {
     justify-content: center;
     z-index: 1000;
     background-color: #47a4c4;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: #fff;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.botao-publicar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }

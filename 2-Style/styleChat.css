@@ -1,0 +1,227 @@
+body {
+  background: #f9f9f9;
+  font-family: "Arial", sans-serif;
+}
+
+/* Topbar */
+.topbar {
+  background: #d86b6b;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.search-bar {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  padding: 6px 12px;
+}
+
+.top-icons i {
+  font-size: 18px;
+  margin: 0 8px;
+  cursor: pointer;
+  color: white;
+}
+
+.top-icons i:hover {
+  color: #e6e6e6;
+}
+
+/* Filtros de vagas */
+.filtros-vagas {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin: 20px 50px 10px;
+}
+
+.filtro-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #555;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.filtro-item i {
+    font-size: 16px;
+}
+
+.filtro-item:hover,
+.filtro-item.ativo {
+    color: #d86b6b;
+    background-color: #ffeaea;
+}
+
+/* Container principal */
+.chat-container {
+  max-width: 850px;
+  margin: 40px auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+/* Cabeçalho do chat */
+.chat-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.chat-header h5 {
+  margin: 0;
+  font-weight: bold;
+}
+
+.chat-header p {
+  margin: 0;
+  color: #666;
+}
+
+/* Imagem e status */
+.profile-pic {
+  position: relative;
+  display: inline-block;
+}
+
+.profile-pic img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.status {
+  position: absolute;
+  bottom: 3px;
+  left: 4px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background-color: #ccc;
+  border: 2px solid #fff;
+}
+
+.status.online {
+  background-color: #28a745;
+}
+
+/* Área de mensagens */
+.chat-body {
+  max-height: 500px;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.mensagem {
+  margin-bottom: 15px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  width: fit-content;
+  max-width: 80%;
+}
+
+.mensagem.recebida {
+  background: #f1f1f1;
+  color: #222;
+}
+
+.mensagem.enviada {
+  background: #cfeaf7;
+  color: #222;
+  margin-left: auto;
+}
+
+.status-msg {
+  font-size: 12px;
+  color: #777;
+  display: block;
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* Rodapé */
+.chat-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-top: 1px solid #ddd;
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+.input-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f3f3f3;
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+
+.input-area textarea {
+  flex: 1;
+  border: none;
+  background: transparent;
+  resize: none;
+  height: 45px;
+  outline: none;
+}
+
+.chat-actions i {
+  font-size: 20px;
+  color: #47a4c4;
+  cursor: pointer;
+  margin: 0 4px;
+}
+
+.chat-actions i:hover {
+  color: #35829d;
+}
+
+.enviar-btn {
+  background: #47a4c4;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: 0.3s;
+}
+
+.enviar-btn:hover {
+  background: #35829d;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .chat-container {
+    margin: 10px;
+    padding: 15px;
+  }
+  .input-area textarea {
+    height: 40px;
+  }
+}

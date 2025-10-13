@@ -1,0 +1,186 @@
+body {
+    background: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+/* Topbar */
+.topbar {
+    background: #d86b6b;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.search-bar {
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    border-radius: 20px;
+    border: none;
+    padding: 6px 12px;
+}
+
+.top-icons i {
+    font-size: 18px;
+    margin: 0 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.top-icons i:hover {
+    color: #e6e6e6;
+}
+
+/* Filtros de vagas */
+.filtros-vagas {
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+    margin: 20px 50px 10px;
+}
+
+.filtro-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    color: #555;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.filtro-item i {
+    font-size: 16px;
+}
+
+.filtro-item:hover,
+.filtro-item.ativo {
+    color: #d86b6b;
+    background-color: #ffeaea;
+}
+
+/* Container */
+.mensagens-container {
+    margin-top: 3%;
+}
+
+/* Cards */
+.mensagem-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+}
+
+.mensagem-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+}
+
+.mensagem-card.ativo {
+    background: #cfeaf7;
+}
+
+.mensagem-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.mensagem-header img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+
+.mensagem-header h6 {
+    margin: 0;
+    font-weight: bold;
+    color: #222;
+}
+
+.mensagem-header p {
+    margin: 4px 0;
+    color: #444;
+    font-size: 14px;
+}
+
+.data {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .mensagem-card {
+        padding: 12px;
+    }
+
+    .mensagem-header img {
+        width: 48px;
+        height: 48px;
+    }
+
+    .mensagem-header h6 {
+        font-size: 15px;
+    }
+
+    .mensagem-header p {
+        font-size: 13px;
+    }
+}
+/* Imagem de perfil com status */
+.profile-pic {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-pic img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Bolinha de status */
+.status {
+    position: absolute;
+    bottom: 3px;
+    left: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background-color: #ccc; /* offline padrão */
+    border: 2px solid #fff;
+}
+
+/* Verde = online */
+.status.online {
+    background-color: #28a745;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .profile-pic img {
+        width: 48px;
+        height: 48px;
+    }
+    .status {
+        width: 9px;
+        height: 9px;
+        bottom: 2px;
+        left: 3px;
+    }
+}

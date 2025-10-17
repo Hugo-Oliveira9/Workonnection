@@ -1,3 +1,8 @@
+// Recupera o nome do usuário salvo no localStorage
+const dadosSalvos = JSON.parse(localStorage.getItem('cadastroDados'));
+const nomeUsuario = dadosSalvos?.nomeDadosPessoais || 'Usuário';
+
+// Seletores principais
 const textarea = document.getElementById('mensagemInput');
 const chatBody = document.querySelector('.chat-body');
 const enviarBtn = document.querySelector('.enviar-btn');
@@ -8,15 +13,15 @@ function criarMensagem(texto, tipo = 'enviada') {
     div.classList.add('mensagem', tipo);
 
     const p = document.createElement('p');
-    if(tipo === 'enviada') {
-        p.innerHTML = `<strong>Usuário:</strong> ${texto}`;
+    if (tipo === 'enviada') {
+        p.innerHTML = `<strong>${nomeUsuario}:</strong> ${texto}`;
     } else {
-        p.innerHTML = `<strong>Tech Solutiones:</strong> ${texto}`;
+        p.innerHTML = `<strong>Tech Soluciones:</strong> ${texto}`;
     }
 
     div.appendChild(p);
 
-    if(tipo === 'enviada') {
+    if (tipo === 'enviada') {
         const statusSpan = document.createElement('span');
         statusSpan.classList.add('status-msg');
         statusSpan.innerText = 'Visualizado';
@@ -30,7 +35,7 @@ function criarMensagem(texto, tipo = 'enviada') {
 // Evento do botão enviar
 enviarBtn.addEventListener('click', () => {
     const texto = textarea.value.trim();
-    if(texto === '') return;
+    if (texto === '') return;
 
     criarMensagem(texto, 'enviada');
     textarea.value = '';

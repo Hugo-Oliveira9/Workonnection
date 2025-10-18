@@ -1,0 +1,230 @@
+/* BODY */
+body {
+  background: #f9f9f9;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s, color 0.3s;
+  color: #333;
+}
+
+/* TOPBAR */
+.topbar {
+  background: #d86b6b;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.topbar .logo img {
+  height: 43px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  margin: 0 20px;
+}
+
+.search-bar input {
+  width: 100%;
+  border-radius: 25px;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.top-icons i {
+  font-size: 20px;
+  margin: 0 8px;
+  cursor: pointer;
+  color: white;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.top-icons i:hover {
+  color: #ffe5e5;
+  transform: scale(1.2);
+}
+
+/* CONTAINER */
+.container-config {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+.container-config h4 {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.card-config {
+  background: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card-config:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.card-config h5 {
+  margin-bottom: 15px;
+  color: #444;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* PERFIS */
+.perfil-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding: 12px 0;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+
+.perfil-item:last-child {
+  border-bottom: none;
+}
+
+.perfil-item:hover {
+  background: #f0f8ff;
+}
+
+.perfil-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+  border: 2px solid #47a4c4;
+}
+
+.perfil-info {
+  flex-grow: 1;
+}
+
+.perfil-info strong,
+.perfil-info p {
+  color: #333;
+}
+
+/* BOTÕES */
+.btn-outline-primary,
+.btn-outline-secondary,
+.btn-outline-success {
+  border-color: #47a4c4;
+  color: #47a4c4;
+  transition: all 0.2s;
+}
+
+.btn-outline-primary:hover,
+.btn-outline-secondary:hover,
+.btn-outline-success:hover {
+  background: #47a4c4;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.botoes-logout {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* CONFIGURAÇÕES INTERATIVAS */
+.config-item {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+  padding: 6px 8px;
+  border-radius: 8px;
+}
+
+.config-item:hover {
+  background: #f0f8ff;
+}
+
+.config-item i {
+  color: #47a4c4;
+  width: 20px;
+  text-align: center;
+}
+
+/* LABELS E TEXTOS */
+.config-item label {
+  font-size: 14px;
+  color: #333;
+}
+
+.tema-toggle label {
+  color: #333;
+}
+
+/* SELECTS */
+.config-item select {
+  border-color: #47a4c4;
+  color: #333;
+  transition: all 0.2s;
+}
+
+.config-item select:focus {
+  border-color: #47a4c4;
+  box-shadow: 0 0 0 0.2rem rgba(71, 164, 196, 0.25);
+  transform: scale(1.02);
+}
+
+/* CHECKBOX E RADIO */
+.config-item input[type="checkbox"],
+.tema-toggle input[type="radio"] {
+  accent-color: #47a4c4;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.config-item input[type="checkbox"]:hover,
+.tema-toggle input[type="radio"]:hover {
+  transform: scale(1.2);
+}
+
+/* TEMAS */
+.tema-toggle {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 15px;
+}
+
+.tema-toggle input {
+  margin-right: 5px;
+}
+
+/* TEMA ESCURO */
+body.dark-mode {
+  background: #1e1e1e;
+  color: #eee;
+}
+
+body.dark-mode .card-config {
+  background: #2a2a2a;
+}
+
+body.dark-mode .perfil-info strong,
+body.dark-mode .perfil-info p {
+  color: #eee;
+}

@@ -443,13 +443,6 @@
     });
   });
   </script>
-  <script src="/5-Javascrip//1-Perfil/perfilVagas.js"></script>
-<script src="/5-Javascrip/1-Perfil/dadosPerfil.js"></script>
-<script src="/5-Javascrip/1-Perfil/sobre.js"></script>
-<script src="/5-Javascrip/1-Perfil/habilidades.js"></script>
-<script src="/5-Javascrip/1-Perfil/formacao.js"></script>
-<script src="/5-Javascrip/1-Perfil/experiencias.js"></script>
-<script src="/5-Javascrip/1-Perfil/cursos.js"></script>
 
 </body>
 </html>

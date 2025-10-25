@@ -133,13 +133,31 @@
       </li>
     </ul>
 
-    <div class="tab-content">
-      <!-- Aba Sobre -->
-      <div class="tab-pane fade show active" id="sobre">
-        <div class="info-card">
-          <h6><b>Sobre</b></h6>
-          <p>Profissional de Administração com foco em gestão estratégica, planejamento financeiro e otimização de processos. Possui experiência em controle orçamentário, liderança de equipes e melhoria contínua de rotinas administrativas.</p>
+    <div class="info-card" id="sobre-nome-card" style="position: relative;">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h6><b>Sobre</b></h6>
+        <i class="fas fa-pen text-primary" id="btnEditarSobre" style="cursor: pointer;"></i>
+      </div>
+      <p id="sobre-conteudo">Clique no ícone de editar para adicionar suas informações.</p>
+    </div>
+
+    <div class="modal fade" id="editarSobreModal" tabindex="-1" aria-labelledby="editarSobreLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editarSobreLabel">Editar Sobre</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
+        <div class="modal-body">
+          <textarea id="inputSobre" class="form-control" rows="5" placeholder="Escreva aqui sobre você..."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="btnSalvarSobre">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
         <div class="info-card">
           <h6><b>Habilidades e conhecimentos</b></h6>
@@ -276,6 +294,7 @@
 
 <script src="/5-Javascrip//1-Perfil/perfilVagas.js"></script>
 <script src="/5-Javascrip/1-Perfil/dadosPerfil.js"></script>
+<script src="/5-Javascrip/1-Perfil/sobre.js"></script>
 
 </body>
 </html>

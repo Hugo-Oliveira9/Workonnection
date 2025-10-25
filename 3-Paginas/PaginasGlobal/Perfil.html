@@ -194,18 +194,54 @@
     </div>
   </div>
 
-        <div class="info-card">
-          <h6><b>Formação Acadêmica</b></h6>
-          <div class="formacao-item">
-            <i class="fas fa-university text-primary"></i>
-            <div>
-              <b>Universidade Federal do Ceará (UFC)</b><br>
-              Bacharelado em Administração<br>
-              <small>Período: 2015 - 2019</small>
+<div class="info-card" id="formacao-card" style="position: relative;">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h6><b>Formação Acadêmica</b></h6>
+    <i class="fas fa-pen text-primary" id="btnEditarFormacao" style="cursor: pointer;"></i>
+  </div>
+  <div id="formacoes-lista">
+    <div class="formacao-item">
+      <i class="fas fa-university text-primary"></i>
+      <div>
+        <b>Nenhuma formação cadastrada</b>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Modal para editar formações -->
+  <div class="modal fade" id="modalFormacao" tabindex="-1" aria-labelledby="modalFormacaoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalFormacaoLabel">Editar Formação Acadêmica</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formFormacao">
+            <div class="mb-3">
+              <label for="inputUniversidade" class="form-label">Universidade</label>
+              <input type="text" class="form-control" id="inputUniversidade">
             </div>
-          </div>
+            <div class="mb-3">
+              <label for="inputCurso" class="form-label">Curso</label>
+              <input type="text" class="form-control" id="inputCurso">
+            </div>
+            <div class="mb-3">
+              <label for="inputPeriodo" class="form-label">Período</label>
+              <input type="text" class="form-control" id="inputPeriodo" placeholder="Ex: 2015 - 2019">
+            </div>
+            <ul id="listaFormacoesTemp"></ul>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="btnSalvarFormacao">Salvar</button>
         </div>
       </div>
+    </div>
+  </div>
+
 
       <!-- Aba Vagas -->
       <div class="tab-pane fade" id="vagas">
@@ -319,6 +355,7 @@
 <script src="/5-Javascrip/1-Perfil/dadosPerfil.js"></script>
 <script src="/5-Javascrip/1-Perfil/sobre.js"></script>
 <script src="/5-Javascrip/1-Perfil/habilidades.js"></script>
+<script src="/5-Javascrip/1-Perfil/formacao.js"></script>
 
 </body>
 </html>

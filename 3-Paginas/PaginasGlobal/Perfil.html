@@ -288,38 +288,61 @@
 
   <!-- SEÇÃO: EXPERIÊNCIAS E CURSOS -->
   <div class="experiencias-card">
-    <div class="info-card">
-      <div class="titulo-linha">
-        <h6><b>Experiências Profissionais</b></h6>
-        <i class="fas fa-pen text-primary"></i>
-      </div>
-
+  <div class="info-card" id="experiencias-card" style="position: relative;">
+    <div class="titulo-linha" style="display:flex; justify-content:space-between; align-items:center;">
+      <h6><b>Experiências Profissionais</b></h6>
+      <i class="fas fa-pen text-primary" id="btnEditarExperiencias" style="cursor:pointer;"></i>
+    </div>
+    <div id="experiencias-lista">
       <div class="experiencia-item">
         <i class="fas fa-building text-primary"></i>
         <div>
-          <b>Comercial Alfa Ltda.</b><br>
-          <span class="cargo">Assistente Administrativo</span><br>
-          <p>Responsável pelo controle de estoque, elaboração de relatórios financeiros e apoio nas rotinas de compras e recursos humanos.</p>
-          <div class="detalhes">
-            <span><i class="fas fa-map-marker-alt text-success"></i> Diadema - SP</span>
-            <span><i class="fas fa-calendar-alt text-info"></i> 03/2020 - 07/2023</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="experiencia-item">
-        <i class="fas fa-building text-primary"></i>
-        <div>
-          <b>Grupo Delta Consultoria</b><br>
-          <span class="cargo">Analista de Processos</span><br>
-          <p>Atuou na padronização de fluxos administrativos e otimização de processos internos, reduzindo custos e tempo de execução de tarefas.</p>
-          <div class="detalhes">
-            <span><i class="fas fa-map-marker-alt text-success"></i> São Paulo - SP</span>
-            <span><i class="fas fa-calendar-alt text-info"></i> 08/2023 - Atual</span>
-          </div>
+          <b>Nenhuma experiência cadastrada</b>
         </div>
       </div>
     </div>
+  </div>
+
+    <!-- Modal de Experiências -->
+  <div class="modal fade" id="modalExperiencias" tabindex="-1" aria-labelledby="modalExperienciasLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalExperienciasLabel">Editar Experiências</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form id="formExperiencia">
+            <div class="mb-3">
+              <label for="inputEmpresa" class="form-label">Empresa</label>
+              <input type="text" class="form-control" id="inputEmpresa">
+            </div>
+            <div class="mb-3">
+              <label for="inputCargo" class="form-label">Cargo</label>
+              <input type="text" class="form-control" id="inputCargo">
+            </div>
+            <div class="mb-3">
+              <label for="inputDescricao" class="form-label">Descrição</label>
+              <textarea class="form-control" id="inputDescricao" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="inputLocalExp" class="form-label">Local</label>
+              <input type="text" class="form-control" id="inputLocalExp">
+            </div>
+            <div class="mb-3">
+              <label for="inputPeriodoExp" class="form-label">Período</label>
+              <input type="text" class="form-control" id="inputPeriodoExp" placeholder="Ex: 03/2020 - 07/2023">
+            </div>
+            <ul id="listaExperienciasTemp"></ul>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="btnSalvarExperiencia">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <div class="info-card">
       <div class="titulo-linha">
@@ -356,6 +379,7 @@
 <script src="/5-Javascrip/1-Perfil/sobre.js"></script>
 <script src="/5-Javascrip/1-Perfil/habilidades.js"></script>
 <script src="/5-Javascrip/1-Perfil/formacao.js"></script>
+<script src="/5-Javascrip/1-Perfil/experiencias.js"></script>
 
 </body>
 </html>

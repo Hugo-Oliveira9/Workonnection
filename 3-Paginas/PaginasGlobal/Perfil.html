@@ -159,17 +159,40 @@
     </div>
   </div>
 
-        <div class="info-card">
-          <h6><b>Habilidades e conhecimentos</b></h6>
-          <div class="habilidades">
-            <span class="badge">Gestão de Equipes</span>
-            <span class="badge">Controle Financeiro</span>
-            <span class="badge">Planejamento Estratégico</span>
-            <span class="badge">Pacote Office Avançado</span>
-            <span class="badge">Atendimento ao Cliente</span>
-            <span class="badge">Gestão de Processos</span>
-          </div>
+  <div class="info-card" id="habilidades-card" style="position: relative;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h6><b>Habilidades e conhecimentos</b></h6>
+      <i class="fas fa-pen text-primary" id="btnEditarHabilidades" style="cursor: pointer;"></i>
+    </div>
+    <div class="habilidades" id="habilidades-lista">
+      <span class="badge bg-secondary">Clique no ícone para adicionar</span>
+    </div>
+  </div>
+
+  <!-- Modal para adicionar habilidades -->
+  <div class="modal fade" id="modalHabilidades" tabindex="-1" aria-labelledby="modalHabilidadesLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalHabilidadesLabel">Editar Habilidades</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
+        <div class="modal-body">
+          <form id="formHabilidades">
+            <div class="mb-3">
+              <label for="inputHabilidade" class="form-label">Nova habilidade</label>
+              <input type="text" class="form-control" id="inputHabilidade" placeholder="Digite a habilidade">
+            </div>
+            <ul id="listaHabilidadesTemp"></ul>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="btnSalvarHabilidades">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
         <div class="info-card">
           <h6><b>Formação Acadêmica</b></h6>
@@ -295,6 +318,7 @@
 <script src="/5-Javascrip//1-Perfil/perfilVagas.js"></script>
 <script src="/5-Javascrip/1-Perfil/dadosPerfil.js"></script>
 <script src="/5-Javascrip/1-Perfil/sobre.js"></script>
+<script src="/5-Javascrip/1-Perfil/habilidades.js"></script>
 
 </body>
 </html>

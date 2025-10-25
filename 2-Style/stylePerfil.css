@@ -345,3 +345,19 @@ body {
 .vaga-item i.fa-ellipsis-v:hover {
     color: #000;
 }
+
+/* Modal */
+#btnAbrirModal {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 10;
+}
+.perfil-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    position: relative; /* <-- adicionei */
+}

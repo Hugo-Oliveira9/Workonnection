@@ -31,46 +31,96 @@
     </div>
   </div>
 
-  <!-- Card de Perfil -->
-  <div class="perfil-card">
-    <div class="perfil-header">
-      <img src="https://img.freepik.com/fotos-gratis/homem-de-negocios-de-vista-frontal-quer-apertar-as-maos_23-2148763831.jpg" alt="Foto de João Pedro">
-      <div class="perfil-dados">
-        <h5>João Pedro Santos</h5>
-        <small>Bacharelado em Administração</small><br>
-        <small><b>Contratação</b></small>
-      </div>
-      <div class="ms-auto">
-        <i class="fas fa-pen text-primary"></i>
-      </div>
+<!-- Card de Perfil -->
+<div class="perfil-card">
+  <div class="perfil-header">
+    <img id="perfil-foto" src="https://img.freepik.com/fotos-gratis/homem-de-negocios-de-vista-frontal-quer-apertar-as-maos_23-2148763831.jpg" alt="Foto do perfil">
+    <div class="perfil-dados">
+      <h5 id="perfil-nome">Nome:</h5>
+      <small id="perfil-formacao">Formação:</small><br>
     </div>
+    <!-- Botão Editar -->
+    <i id="btnAbrirModal" class="fas fa-pen text-primary"></i>
+  </div>
 
-    <!-- Contatos -->
-    <div class="vaga-body contatos">
-      <a href="#" class="contato-item"><i class="fas fa-map-marker-alt text-primary"></i> Diadema (SP)</a>
-      <a href="tel:+5511985289024" class="contato-item"><i class="fas fa-phone text-success"></i> (11) 98528-9024</a>
-      <a href="https://www.instagram.com/jp_santos" target="_blank" class="contato-item"><i class="fab fa-instagram text-danger"></i> @jp_santos</a>
-      <a href="https://www.linkedin.com/in/joao_santos" target="_blank" class="contato-item"><i class="fab fa-linkedin text-primary"></i> @joao_santos</a>
-      <a href="http://www.jp_santos.com.br" target="_blank" class="contato-item"><i class="fas fa-globe text-info"></i> www.jp_santos.com.br</a>
-    </div>
+  <!-- Contatos -->
+  <div class="vaga-body contatos">
+    <a id="perfil-local" href="#" class="contato-item"><i class="fas fa-map-marker-alt text-primary"></i> Local:</a>
+    <a id="perfil-telefone" href="#" class="contato-item"><i class="fas fa-phone text-success"></i> Telefone:</a>
+    <a id="perfil-instagram" href="#" class="contato-item"><i class="fab fa-instagram text-danger"></i> Instagram:</a>
+    <a id="perfil-linkedin" href="#" class="contato-item"><i class="fab fa-linkedin text-primary"></i> LinkedIn:</a>
+    <a id="perfil-site" href="#" class="contato-item"><i class="fas fa-globe text-info"></i> Site:</a>
+  </div>
 
-    <!-- Análise de Perfil -->
-    <div class="analise-footer">
-      <p><i class="fas fa-user text-info"></i> 43 visualizações no seu perfil</p>
-    </div>
+  <!-- Análise de Perfil -->
+  <div class="analise-footer">
+    <p><i class="fas fa-user text-info"></i> 43 visualizações no seu perfil</p>
+  </div>
 
-    <!-- Feedbacks -->
-    <div class="vaga-body">
-      <h6><b>Feedbacks ao seu perfil</b></h6>
-      <div class="vaga-card feedback-card">
-        <img src="/6-Imagens/FotosPerfis/Tech-Soluciones.png" alt="Avatar Tech4All" class="feedback-avatar">
-        <div class="feedback-text">
-          <h6>Tech4All</h6>
-          <p>“João demonstrou excelente capacidade de organização e liderança durante nosso processo seletivo.”</p>
-        </div>
+  <!-- Feedbacks -->
+  <div class="vaga-body">
+    <h6><b>Feedbacks ao seu perfil</b></h6>
+    <div class="vaga-card feedback-card">
+      <img src="/6-Imagens/FotosPerfis/Tech-Soluciones.png" alt="Avatar Tech4All" class="feedback-avatar">
+      <div class="feedback-text">
+        <h6>Tech4All</h6>
+        <p>“João demonstrou excelente capacidade de organização e liderança durante nosso processo seletivo.”</p>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Modal Editar Perfil -->
+<div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarPerfilLabel">Editar Perfil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+      </div>
+      <div class="modal-body">
+        <form id="formEditarPerfil">
+          <div class="mb-3">
+            <label for="inputNome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="inputNome" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail" disabled>
+          </div>
+          <div class="mb-3">
+            <label for="inputLocal" class="form-label">Local</label>
+            <input type="text" class="form-control" id="inputLocal">
+          </div>
+          <div class="mb-3">
+            <label for="inputTelefone" class="form-label">Telefone</label>
+            <input type="text" class="form-control" id="inputTelefone">
+          </div>
+          <div class="mb-3">
+            <label for="inputInstagram" class="form-label">Instagram</label>
+            <input type="text" class="form-control" id="inputInstagram">
+          </div>
+          <div class="mb-3">
+            <label for="inputLinkedin" class="form-label">LinkedIn</label>
+            <input type="text" class="form-control" id="inputLinkedin">
+          </div>
+          <div class="mb-3">
+            <label for="inputSite" class="form-label">Site</label>
+            <input type="text" class="form-control" id="inputSite">
+          </div>
+          <div class="mb-3">
+            <label for="inputFoto" class="form-label">URL da Foto</label>
+            <input type="text" class="form-control" id="inputFoto">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnSalvarModal">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
   <!-- SEÇÃO: SOBRE / VAGAS -->
   <div class="sobre-card">
@@ -224,7 +274,8 @@
     </div>
   </div>
 
-<script src="/5-Javascrip/perfilVagas.js"></script>
+<script src="/5-Javascrip//1-Perfil/perfilVagas.js"></script>
+<script src="/5-Javascrip/1-Perfil/dadosPerfil.js"></script>
 
 </body>
 </html>

@@ -241,8 +241,6 @@
       </div>
     </div>
   </div>
-
-
       <!-- Aba Vagas -->
       <div class="tab-pane fade" id="vagas">
         <div class="filtros-vagas">
@@ -344,35 +342,51 @@
     </div>
   </div>
 
-    <div class="info-card">
-      <div class="titulo-linha">
-        <h6><b>Cursos e Certificados</b></h6>
-        <i class="fas fa-pen text-primary"></i>
-      </div>
+<div class="info-card" id="cursos-card" style="position: relative;">
+  <div class="titulo-linha" style="display:flex; justify-content:space-between; align-items:center;">
+    <h6><b>Cursos e Certificados</b></h6>
+    <i class="fas fa-pen text-primary" id="btnEditarCursos" style="cursor:pointer;"></i>
+  </div>
+  <div id="cursos-lista">
+    <div class="experiencia-item">
+      <i class="fas fa-book text-primary"></i>
+      <div><b>Nenhum curso cadastrado</b></div>
+    </div>
+  </div>
+</div>
 
-      <div class="experiencia-item">
-        <i class="fas fa-book text-primary"></i>
-        <div>
-          <b>Gestão Financeira e Orçamentária</b><br>
-          <span class="instituicao">Fundação Getulio Vargas (FGV)</span><br>
-          <div class="detalhes">
-            <span><i class="fas fa-calendar-alt text-info"></i> 01/2021 - 06/2021</span>
-          </div>
-        </div>
+ <div class="modal fade" id="modalCursos" tabindex="-1" aria-labelledby="modalCursosLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalCursosLabel">Editar Cursos e Certificados</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
       </div>
-
-      <div class="experiencia-item">
-        <i class="fas fa-book text-primary"></i>
-        <div>
-          <b>Liderança e Desenvolvimento de Equipes</b><br>
-          <span class="instituicao">Sebrae</span><br>
-          <div class="detalhes">
-            <span><i class="fas fa-calendar-alt text-info"></i> 09/2022 - 12/2022</span>
+      <div class="modal-body">
+        <form id="formCurso" onsubmit="return false;">
+          <div class="mb-3">
+            <label for="inputNomeCurso" class="form-label">Curso</label>
+            <input type="text" class="form-control" id="inputNomeCurso" placeholder="Nome do curso">
           </div>
-        </div>
+          <div class="mb-3">
+            <label for="inputInstituicaoCurso" class="form-label">Instituição</label>
+            <input type="text" class="form-control" id="inputInstituicaoCurso" placeholder="Nome da instituição">
+          </div>
+          <div class="mb-3">
+            <label for="inputPeriodoCurso" class="form-label">Período</label>
+            <input type="text" class="form-control" id="inputPeriodoCurso" placeholder="Ex: 2024 - 2025">
+          </div>
+          <ul id="listaCursosTemp"></ul>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary" id="btnSalvarCurso">Salvar</button>
       </div>
     </div>
   </div>
+</div>
+
 
 <script src="/5-Javascrip//1-Perfil/perfilVagas.js"></script>
 <script src="/5-Javascrip/1-Perfil/dadosPerfil.js"></script>
@@ -380,6 +394,7 @@
 <script src="/5-Javascrip/1-Perfil/habilidades.js"></script>
 <script src="/5-Javascrip/1-Perfil/formacao.js"></script>
 <script src="/5-Javascrip/1-Perfil/experiencias.js"></script>
+<script src="/5-Javascrip/1-Perfil/cursos.js"></script>
 
 </body>
 </html>

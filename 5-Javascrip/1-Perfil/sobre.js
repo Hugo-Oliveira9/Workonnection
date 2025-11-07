@@ -1,30 +1,22 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const btnEditarSobre = document.getElementById('btnEditarSobre');
-  const btnSalvarSobre = document.getElementById('btnSalvarSobre');
-  const inputSobre = document.getElementById('inputSobre');
-  const sobreConteudo = document.getElementById('sobre-conteudo');
+const btnEditarSobre = document.getElementById('btnEditarSobre');
+const modalSobre = new bootstrap.Modal(document.getElementById('editarSobreModal'));
+const inputSobre = document.getElementById('inputSobre');
+const btnSalvarSobre = document.getElementById('btnSalvarSobre');
+const sobreConteudo = document.getElementById('sobre-conteudo');
 
-  // Carregar dados do localStorage
-  const perfilDados = JSON.parse(localStorage.getItem('perfilDados')) || {};
-  if (perfilDados.sobre) {
-    sobreConteudo.textContent = perfilDados.sobre;
-  }
+function renderSobre() {
+  const s = load('sobre', '');
+  sobreConteudo.textContent = s || 'Clique em editar para adicionar suas informações.';
+}
 
-  // Abrir modal
-  btnEditarSobre.addEventListener('click', () => {
-    inputSobre.value = perfilDados.sobre || '';
-    const modal = new bootstrap.Modal(document.getElementById('editarSobreModal'));
-    modal.show();
-  });
+btnEditarSobre.addEventListener('click', () => {
+  inputSobre.value = load('sobre', '');
+  modalSobre.show();
+});
 
-  // Salvar dados
-  btnSalvarSobre.addEventListener('click', () => {
-    const texto = inputSobre.value.trim();
-    perfilDados.sobre = texto;
-    localStorage.setItem('perfilDados', JSON.stringify(perfilDados));
-    sobreConteudo.textContent = texto || 'Clique no ícone de editar para adicionar suas informações.';
-    const modalEl = document.getElementById('editarSobreModal');
-    const modal = bootstrap.Modal.getInstance(modalEl);
-    modal.hide();
-  });
+btnSalvarSobre.addEventListener('click', () => {
+  const val = inputSobre.value.trim();
+  save('sobre', val);
+  renderSobre();
+  modalSobre.hide();
 });

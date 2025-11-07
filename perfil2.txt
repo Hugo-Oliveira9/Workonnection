@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WorkConnection - Perfil (Tabs estilo original)</title>
+
+  <!-- Bootstrap + FontAwesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- === seu CSS original (copiado e usado) === -->
+  <style>
+    body {
+        background: #f9f9f9;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Topbar */
+    .topbar {
+        background: #d86b6b;
+        padding: 12px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }
+
+    .topbar .logo img {
+        height: 45px;
+    }
+
+    .search-bar {
+        flex-grow: 1;
+        margin: 0 20px;
+    }
+
+    .search-bar input {
+        width: 100%;
+        border-radius: 25px;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .top-icons i {
+        font-size: 20px;
+        margin: 0 8px;
+        cursor: pointer;
+        color: white;
+        transition: color 0.3s, transform 0.2s;
+    }
+
+    .top-icons i:hover {
+        color: #ffe5e5;
+        transform: scale(1.2);
+    }
+
+    /* Card de perfil */
+    .perfil-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 60px 60px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .perfil-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+    }
+
+    .perfil-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+
+    .perfil-header img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        margin-right: 15px;
+        object-fit: cover;
+        border: 2px solid #5ec3e6;;
+    }
+
+    .perfil-dados h5 {
+        font-weight: bold;
+        font-size: 1.3rem;
+        margin: 0;
+    }
+
+    .perfil-dados small {
+        color: #888888;
+    }
+
+    /* Contatos */
+    .contatos {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+
+    .contato-item {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: all 0.2s ease;
+    }
+
+    .contato-item i {
+        min-width: 20px;
+        text-align: center;
+    }
+
+    .contato-item:hover {
+        color: #47a4c4;
+        transform: translateX(3px);
+    }
+
+    /* Análise de perfil */
+    .analise-footer {
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        padding: 12px 15px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+
+    /* Feedbacks */
+    .feedback-card {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        background-color: #f9f9f9;
+        border-radius: 12px;
+        padding: 12px;
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .feedback-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .feedback-avatar {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #5ec3e6;
+    }
+
+    .feedback-text h6 {
+        margin: 0 0 5px 0;
+    }
+
+    .feedback-text p {
+        margin: 0;
+        color: #555;
+    }
+
+    /* Tabs sobre/vagas */
+    .sobre-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 30px 60px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .sobre-card .nav-tabs {
+        border-bottom: none;
+    }
+
+    .sobre-card .nav-link {
+        background: #f1f1f1;
+        border-radius: 10px 10px 0 0;
+        margin-right: 5px;
+        color: #555;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .sobre-card .nav-link.active {
+        background: #fff;
+        color: #000;
+        border-bottom: 2px solid #d86b6b;
+    }
+
+    /* Info cards internos */
+    .info-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 15px;
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .info-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .info-card h6 {
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .info-card p {
+        margin: 0;
+        color: #555;
+    }
+
+    /* Habilidades */
+    .habilidades {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .habilidades .badge {
+        background-color: #e0e0e0;
+        color: #333;
+        border-radius: 20px;
+        padding: 6px 12px;
+        font-size: 0.9rem;
+        transition: 0.3s;
+    }
+
+    .habilidades .badge:hover {
+        background-color: #d86b6b;
+        color: white;
+    }
+
+    /* Experiências e cursos */
+    .experiencias-card {
+        background: #fff;
+        border-radius: 15px;
+        padding: 20px;
+        margin: 30px 60px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .experiencia-item {
+        display: flex;
+        gap: 12px;
+        background: #f9f9f9;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 12px;
+        border: 1px solid #ddd;
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .experiencia-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .experiencia-item i {
+        font-size: 24px;
+        min-width: 30px;
+    }
+
+    .experiencia-item b {
+        font-size: 1rem;
+    }
+
+    .detalhes {
+        display: flex;
+        gap: 20px;
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    /* Vagas (removido visualmente - mantido só no CSS caso queira reaproveitar depois) */
+    .filtros-vagas {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 15px;
+        padding: 5px 10px;
+    }
+
+    .filtro-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        color: #444;
+        font-weight: 500;
+        transition: 0.3s;
+    }
+
+    .filtro-item:hover,
+    .filtro-item.ativo {
+        color: #d86b6b;
+    }
+
+    .vagas-card {
+        background: #fff;
+        border-radius: 12px;
+        padding: 15px;
+        border: 1px solid #ccc;
+    }
+
+    .vaga-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #f9f9f9;
+        border-radius: 12px;
+        padding: 12px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        transition: transform 0.2s, box-shadow 0.3s;
+    }
+
+    .vaga-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .vaga-item img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .vaga-info b {
+        font-size: 1rem;
+    }
+
+    .vaga-info span, .vaga-info small {
+        color: #555;
+    }
+
+    .vaga-item i.fa-ellipsis-v {
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .vaga-item i.fa-ellipsis-v:hover {
+        color: #000;
+    }
+
+    /* Modal */
+    #btnAbrirModal {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 20px;
+        cursor: pointer;
+        z-index: 10;
+    }
+    .perfil-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+        position: relative; /* <-- adicionei */
+    }
+
+    /* small helpers */
+    .small-actions i { cursor: pointer; margin-left: 10px; }
+    .list-item { display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee; }
+    .list-item:last-child { border-bottom:none; }
+    .action-btn { cursor:pointer; margin-left:8px; }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar (mantive a estrutura minimal) -->
+  <div class="topbar">
+    <div class="logo">
+      <img src="/6-Imagens/Logo Workonnection.png" alt="Logo" style="height: 43px;">
+    </div>
+    <div class="search-bar"><input placeholder="Pesquisar"></div>
+    <div class="top-icons">
+      <i class="fas fa-home"></i>
+      <i class="fas fa-bell"></i>
+      <i class="fas fa-briefcase"></i>
+      <i class="fas fa-users"></i>
+      <i class="fas fa-user"></i>
+      <i class="fas fa-question-circle"></i>
+      <i class="fas fa-info-circle"></i>
+      <i class="fas fa-cog"></i>
+    </div>
+  </div>
+
+  <!-- Card de perfil -->
+  <div class="perfil-card">
+    <div class="perfil-header">
+      <img id="perfil-foto" src="https://img.freepik.com/fotos-gratis/homem-de-negocios-de-vista-frontal-quer-apertar-as-maos_23-2148763831.jpg" alt="Foto do perfil">
+      <div class="perfil-dados">
+        <h5 id="perfil-nome">Nome:</h5>
+        <small id="perfil-formacao">Formação:</small><br>
+        <div class="contatos" style="margin-top:10px;">
+          <a id="perfil-local" href="#" class="contato-item"><i class="fas fa-map-marker-alt text-primary"></i> Local:</a>
+          <a id="perfil-telefone" href="#" class="contato-item"><i class="fas fa-phone text-success"></i> Telefone:</a>
+          <a id="perfil-instagram" href="#" class="contato-item"><i class="fab fa-instagram text-danger"></i> Instagram:</a>
+          <a id="perfil-linkedin" href="#" class="contato-item"><i class="fab fa-linkedin text-primary"></i> LinkedIn:</a>
+          <a id="perfil-site" href="#" class="contato-item"><i class="fas fa-globe text-info"></i> Site:</a>
+        </div>
+      </div>
+
+      <!-- botão que abre modal editar perfil -->
+      <i id="btnAbrirModal" class="fas fa-pen text-primary" title="Editar perfil"></i>
+    </div>
+
+    <div class="analise-footer">
+      <p><i class="fas fa-user text-info"></i> <span id="visuPerfil">43</span> visualizações no seu perfil</p>
+      <div style="margin-left:auto;">
+        <button id="btnResetar" class="btn btn-sm btn-outline-danger">Redefinir Tudo</button>
+      </div>
+    </div>
+
+    <!-- FEEDBACK -->
+    <div style="margin-top:10px;">
+      <h6><b>Feedbacks ao seu perfil</b></h6>
+      <div class="vaga-card feedback-card" style="max-width:420px;">
+        <img src="/6-Imagens/FotosPerfis/Tech-Soluciones.png" alt="Avatar Tech4All" class="feedback-avatar">
+        <div class="feedback-text">
+          <h6>Tech4All</h6>
+          <p>“João demonstrou excelente capacidade de organização e liderança durante nosso processo seletivo.”</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOBRE com TABS (opção 1) -->
+  <div class="sobre-card">
+    <ul class="nav nav-tabs mb-3" id="perfilTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="sobre-tab" data-bs-toggle="tab" data-bs-target="#sobre" type="button" role="tab">Sobre</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="habilidades-tab" data-bs-toggle="tab" data-bs-target="#habilidades" type="button" role="tab">Habilidades</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="formacao-tab" data-bs-toggle="tab" data-bs-target="#formacao" type="button" role="tab">Formação</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="exp-tab" data-bs-toggle="tab" data-bs-target="#experiencias" type="button" role="tab">Experiências</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="cursos-tab" data-bs-toggle="tab" data-bs-target="#cursos" type="button" role="tab">Cursos</button>
+      </li>
+    </ul>
+
+    <div class="tab-content">
+      <!-- SOBRE -->
+      <div class="tab-pane fade show active" id="sobre" role="tabpanel">
+        <div class="info-card" style="position:relative;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h6><b>Sobre</b></h6>
+            <i id="btnEditarSobre" class="fas fa-pen text-primary" style="cursor:pointer;"></i>
+          </div>
+          <p id="sobre-conteudo" style="margin-top:10px;">Clique em editar para adicionar suas informações.</p>
+        </div>
+      </div>
+
+      <!-- HABILIDADES -->
+      <div class="tab-pane fade" id="habilidades" role="tabpanel">
+        <div class="info-card" style="position:relative;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h6><b>Habilidades e conhecimentos</b></h6>
+            <i id="btnEditarHabilidades" class="fas fa-plus text-primary" style="cursor:pointer;"></i>
+          </div>
+          <div class="habilidades" id="habilidades-lista" style="margin-top:10px;">
+            <!-- badges dinamicos aqui -->
+          </div>
+        </div>
+      </div>
+
+      <!-- FORMAÇÃO -->
+      <div class="tab-pane fade" id="formacao" role="tabpanel">
+        <div class="info-card" style="position:relative;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h6><b>Formação Acadêmica</b></h6>
+            <i id="btnEditarFormacao" class="fas fa-plus text-primary" style="cursor:pointer;"></i>
+          </div>
+          <div id="formacoes-lista" style="margin-top:10px;">
+            <!-- formações adicionadas aqui -->
+          </div>
+        </div>
+      </div>
+
+      <!-- EXPERIÊNCIAS -->
+      <div class="tab-pane fade" id="experiencias" role="tabpanel">
+        <div class="info-card" style="position:relative;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h6><b>Experiências Profissionais</b></h6>
+            <i id="btnEditarExperiencias" class="fas fa-plus text-primary" style="cursor:pointer;"></i>
+          </div>
+          <div id="experiencias-lista" style="margin-top:10px;">
+            <!-- experiencias adicionadas aqui -->
+          </div>
+        </div>
+      </div>
+
+      <!-- CURSOS -->
+      <div class="tab-pane fade" id="cursos" role="tabpanel">
+        <div class="info-card" style="position:relative;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h6><b>Cursos e Certificados</b></h6>
+            <i id="btnEditarCursos" class="fas fa-plus text-primary" style="cursor:pointer;"></i>
+          </div>
+          <div id="cursos-lista" style="margin-top:10px;">
+            <!-- cursos adicionados aqui -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAIS (edicao/adicao) ========== -->
+
+  <!-- Modal editar foto/nome/contatos -->
+  <div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Editar Perfil</h5></div>
+        <div class="modal-body">
+          <div class="mb-2">
+            <label class="form-label">Nome</label>
+            <input id="inputNome" class="form-control" type="text" placeholder="Seu nome">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">E-mail</label>
+            <input id="inputEmail" class="form-control" type="email" placeholder="email@exemplo.com">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Local</label>
+            <input id="inputLocal" class="form-control" type="text" placeholder="Cidade - Estado">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Telefone</label>
+            <input id="inputTelefone" class="form-control" type="text" placeholder="(xx) xxxxx-xxxx">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Instagram</label>
+            <input id="inputInstagram" class="form-control" type="text" placeholder="@usuario">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">LinkedIn</label>
+            <input id="inputLinkedin" class="form-control" type="text" placeholder="linkedin.com/in/usuario">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">Site</label>
+            <input id="inputSite" class="form-control" type="text" placeholder="https://...">
+          </div>
+          <div class="mb-2">
+            <label class="form-label">URL da Foto</label>
+            <input id="inputFoto" class="form-control" type="text" placeholder="https://...">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button id="btnSalvarPerfil" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Sobre -->
+  <div class="modal fade" id="editarSobreModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Editar Sobre</h5></div>
+        <div class="modal-body">
+          <textarea id="inputSobre" class="form-control" rows="5" placeholder="Escreva sobre você..."></textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button id="btnSalvarSobre" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Habilidade (add/edit) -->
+  <div class="modal fade" id="modalHabilidade" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="titleHabilidade">Adicionar Habilidade</h5></div>
+        <div class="modal-body">
+          <input id="inputHabilidade" class="form-control" type="text" placeholder="Ex: Java, Git, SQL">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button id="btnSalvarHabilidade" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Formação (add/edit) -->
+  <div class="modal fade" id="modalFormacao" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="titleFormacao">Adicionar Formação</h5></div>
+        <div class="modal-body">
+          <input id="inputUniversidade" class="form-control mb-2" placeholder="Universidade">
+          <input id="inputCurso" class="form-control mb-2" placeholder="Curso">
+          <input id="inputPeriodo" class="form-control" placeholder="Período (ex: 2019 - 2023)">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button id="btnSalvarFormacao" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Experiência (add/edit) -->
+  <div class="modal fade" id="modalExperiencia" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="titleExperiencia">Adicionar Experiência</h5></div>
+        <div class="modal-body">
+          <input id="inputEmpresa" class="form-control mb-2" placeholder="Empresa">
+          <input id="inputCargo" class="form-control mb-2" placeholder="Cargo">
+          <input id="inputPeriodoExp" class="form-control" placeholder="Período (ex: 03/2020 - 07/2023)">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button id="btnSalvarExperiencia" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Curso (add/edit) -->
+  <div class="modal fade" id="modalCurso" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="titleCurso">Adicionar Curso</h5></div>
+        <div class="modal-body">
+          <input id="inputNomeCurso" class="form-control mb-2" placeholder="Nome do curso">
+          <input id="inputInstituicaoCurso" class="form-control" placeholder="Instituição">
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button id="btnSalvarCurso" class="btn btn-primary">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ===== JS: comportamento, modais e localStorage ===== -->
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // ---------- helpers ----------
+    const save = (k, v) => localStorage.setItem(k, JSON.stringify(v));
+    const load = (k, dv) => {
+      const s = localStorage.getItem(k);
+      return s ? JSON.parse(s) : dv;
+    };
+    const confirmDelete = (message) => confirm(message);
+
+    // ---------- elementos perfil ----------
+    const fotoEl = document.getElementById('perfil-foto');
+    const nomeEl = document.getElementById('perfil-nome');
+    const formacaoSmall = document.getElementById('perfil-formacao');
+    const btnAbrirModal = document.getElementById('btnAbrirModal');
+
+    const modalPerfil = new bootstrap.Modal(document.getElementById('editarPerfilModal'));
+    const inputNome = document.getElementById('inputNome');
+    const inputEmail = document.getElementById('inputEmail');
+    const inputLocal = document.getElementById('inputLocal');
+    const inputTelefone = document.getElementById('inputTelefone');
+    const inputInstagram = document.getElementById('inputInstagram');
+    const inputLinkedin = document.getElementById('inputLinkedin');
+    const inputSite = document.getElementById('inputSite');
+    const inputFoto = document.getElementById('inputFoto');
+    const btnSalvarPerfil = document.getElementById('btnSalvarPerfil');
+
+    // ---------- sobre ----------
+    const btnEditarSobre = document.getElementById('btnEditarSobre');
+    const modalSobre = new bootstrap.Modal(document.getElementById('editarSobreModal'));
+    const inputSobre = document.getElementById('inputSobre');
+    const btnSalvarSobre = document.getElementById('btnSalvarSobre');
+    const sobreConteudo = document.getElementById('sobre-conteudo');
+
+    // ---------- habilidades ----------
+    const btnEditarHabilidades = document.getElementById('btnEditarHabilidades');
+    const modalHabilidade = new bootstrap.Modal(document.getElementById('modalHabilidade'));
+    const titleHabilidade = document.getElementById('titleHabilidade');
+    const inputHabilidade = document.getElementById('inputHabilidade');
+    const btnSalvarHabilidade = document.getElementById('btnSalvarHabilidade');
+    const habilidadesLista = document.getElementById('habilidades-lista');
+
+    // ---------- formacao ----------
+    const btnEditarFormacao = document.getElementById('btnEditarFormacao');
+    const modalFormacao = new bootstrap.Modal(document.getElementById('modalFormacao'));
+    const titleFormacao = document.getElementById('titleFormacao');
+    const inputUniversidade = document.getElementById('inputUniversidade');
+    const inputCurso = document.getElementById('inputCurso');
+    const inputPeriodo = document.getElementById('inputPeriodo');
+    const btnSalvarFormacao = document.getElementById('btnSalvarFormacao');
+    const formacoesLista = document.getElementById('formacoes-lista');
+
+    // ---------- experiencias ----------
+    const btnEditarExperiencias = document.getElementById('btnEditarExperiencias');
+    const modalExperiencia = new bootstrap.Modal(document.getElementById('modalExperiencia'));
+    const titleExperiencia = document.getElementById('titleExperiencia');
+    const inputEmpresa = document.getElementById('inputEmpresa');
+    const inputCargo = document.getElementById('inputCargo');
+    const inputPeriodoExp = document.getElementById('inputPeriodoExp');
+    const btnSalvarExperiencia = document.getElementById('btnSalvarExperiencia');
+    const experienciasLista = document.getElementById('experiencias-lista');
+
+    // ---------- cursos ----------
+    const btnEditarCursos = document.getElementById('btnEditarCursos');
+    const modalCurso = new bootstrap.Modal(document.getElementById('modalCurso'));
+    const titleCurso = document.getElementById('titleCurso');
+    const inputNomeCurso = document.getElementById('inputNomeCurso');
+    const inputInstituicaoCurso = document.getElementById('inputInstituicaoCurso');
+    const btnSalvarCurso = document.getElementById('btnSalvarCurso');
+    const cursosLista = document.getElementById('cursos-lista');
+
+    // ---------- reset ----------
+    const btnResetar = document.getElementById('btnResetar');
+
+    // ---------- estado de edição (indices) ----------
+    let editing = {
+      habilidadeIndex: -1,
+      formacaoIndex: -1,
+      experienciaIndex: -1,
+      cursoIndex: -1
+    };
+
+    // ---------- load / render ----------
+    function carregarPerfil() {
+      const perfil = load('perfil', {
+        nome: 'Seu Nome',
+        email: '',
+        local: '',
+        telefone: '',
+        instagram: '',
+        linkedin: '',
+        site: '',
+        foto: 'https://img.freepik.com/fotos-gratis/homem-de-negocios-de-vista-frontal-quer-apertar-as-maos_23-2148763831.jpg'
+      });
+      nomeEl.textContent = perfil.nome ? perfil.nome : 'Nome:';
+      // mostra formação pequena (opcional) - se tiver formacoes pega o curso mais recente
+      const formacoes = load('formacoes', []);
+      if (formacoes.length) {
+        formacaoSmall.textContent = formacoes[formacoes.length - 1].curso + ' - ' + formacoes[formacoes.length - 1].universidade;
+      } else {
+        formacaoSmall.textContent = perfil.email ? perfil.email : 'Formação:';
+      }
+      fotoEl.src = perfil.foto || '';
+      // contatos
+      document.getElementById('perfil-local').innerHTML = '<i class="fas fa-map-marker-alt text-primary"></i> ' + (perfil.local || 'Local:');
+      document.getElementById('perfil-telefone').innerHTML = '<i class="fas fa-phone text-success"></i> ' + (perfil.telefone || 'Telefone:');
+      document.getElementById('perfil-instagram').innerHTML = '<i class="fab fa-instagram text-danger"></i> ' + (perfil.instagram || 'Instagram:');
+      document.getElementById('perfil-linkedin').innerHTML = '<i class="fab fa-linkedin text-primary"></i> ' + (perfil.linkedin || 'LinkedIn:');
+      document.getElementById('perfil-site').innerHTML = '<i class="fas fa-globe text-info"></i> ' + (perfil.site || 'Site:');
+    }
+
+    function renderSobre() {
+      const s = load('sobre', '');
+      sobreConteudo.textContent = s || 'Clique em editar para adicionar suas informações.';
+    }
+
+    function renderHabilidades() {
+      const arr = load('habilidades', []);
+      habilidadesLista.innerHTML = '';
+      if (arr.length === 0) {
+        habilidadesLista.innerHTML = '<span class="badge bg-secondary">Nenhuma habilidade cadastrada</span>';
+        return;
+      }
+      arr.forEach((h, idx) => {
+        const span = document.createElement('span');
+        span.className = 'badge';
+        span.style.background = '#e0e0e0';
+        span.style.color = '#333';
+        span.style.marginRight = '8px';
+        span.style.padding = '6px 10px';
+        span.textContent = h;
+        // actions edit/delete
+        const editI = document.createElement('i');
+        editI.className = 'fa-solid fa-pen action-btn text-primary';
+        editI.title = 'Editar';
+        editI.style.marginLeft = '8px';
+        editI.addEventListener('click', () => {
+          editing.habilidadeIndex = idx;
+          titleHabilidade.textContent = 'Editar Habilidade';
+          inputHabilidade.value = h;
+          modalHabilidade.show();
+        });
+        const delI = document.createElement('i');
+        delI.className = 'fa-solid fa-trash action-btn text-danger';
+        delI.title = 'Excluir';
+        delI.addEventListener('click', () => {
+          if (!confirmDelete('Excluir essa habilidade?')) return;
+          arr.splice(idx, 1);
+          save('habilidades', arr);
+          renderHabilidades();
+        });
+        span.appendChild(editI);
+        span.appendChild(delI);
+        habilidadesLista.appendChild(span);
+      });
+    }
+
+    function renderFormacoes() {
+      const arr = load('formacoes', []);
+      formacoesLista.innerHTML = '';
+      if (arr.length === 0) {
+        formacoesLista.innerHTML = '<div class="formacao-item"><i class="fas fa-university text-primary"></i><div><b>Nenhuma formação cadastrada</b></div></div>';
+        return;
+      }
+      arr.forEach((f, idx) => {
+        const div = document.createElement('div');
+        div.className = 'experiencia-item'; // reuse visual
+        div.style.justifyContent = 'space-between';
+        div.innerHTML = `
+          <div style="display:flex; gap:12px; align-items:center;">
+            <i class="fas fa-university text-primary"></i>
+            <div>
+              <b>${f.curso}</b><br>
+              <small>${f.universidade} • ${f.periodo}</small>
+            </div>
+          </div>
+        `;
+        const actions = document.createElement('div');
+        actions.className = 'small-actions';
+        const editI = document.createElement('i');
+        editI.className = 'fa-solid fa-pen text-primary';
+        editI.title = 'Editar';
+        editI.addEventListener('click', () => {
+          editing.formacaoIndex = idx;
+          titleFormacao.textContent = 'Editar Formação';
+          inputUniversidade.value = f.universidade;
+          inputCurso.value = f.curso;
+          inputPeriodo.value = f.periodo;
+          modalFormacao.show();
+        });
+        const delI = document.createElement('i');
+        delI.className = 'fa-solid fa-trash text-danger';
+        delI.title = 'Excluir';
+        delI.addEventListener('click', () => {
+          if (!confirmDelete('Excluir essa formação?')) return;
+          arr.splice(idx, 1);
+          save('formacoes', arr);
+          renderFormacoes();
+          carregarPerfil(); // atualiza o resumo
+        });
+        actions.appendChild(editI);
+        actions.appendChild(delI);
+        div.appendChild(actions);
+        formacoesLista.appendChild(div);
+      });
+    }
+
+    function renderExperiencias() {
+      const arr = load('experiencias', []);
+      experienciasLista.innerHTML = '';
+      if (arr.length === 0) {
+        experienciasLista.innerHTML = '<div class="experiencia-item"><i class="fas fa-building text-primary"></i><div><b>Nenhuma experiência cadastrada</b></div></div>';
+        return;
+      }
+      arr.forEach((e, idx) => {
+        const div = document.createElement('div');
+        div.className = 'experiencia-item';
+        div.style.justifyContent = 'space-between';
+        div.innerHTML = `
+          <div style="display:flex; gap:12px; align-items:center;">
+            <i class="fas fa-briefcase text-primary"></i>
+            <div>
+              <b>${e.cargo}</b><br>
+              <small>${e.empresa} • ${e.periodo}</small>
+            </div>
+          </div>
+        `;
+        const actions = document.createElement('div');
+        const editI = document.createElement('i');
+        editI.className = 'fa-solid fa-pen text-primary';
+        editI.title = 'Editar';
+        editI.addEventListener('click', () => {
+          editing.experienciaIndex = idx;
+          titleExperiencia.textContent = 'Editar Experiência';
+          inputEmpresa.value = e.empresa;
+          inputCargo.value = e.cargo;
+          inputPeriodoExp.value = e.periodo;
+          modalExperiencia.show();
+        });
+        const delI = document.createElement('i');
+        delI.className = 'fa-solid fa-trash text-danger';
+        delI.title = 'Excluir';
+        delI.addEventListener('click', () => {
+          if (!confirmDelete('Excluir essa experiência?')) return;
+          arr.splice(idx, 1);
+          save('experiencias', arr);
+          renderExperiencias();
+        });
+        actions.appendChild(editI);
+        actions.appendChild(delI);
+        div.appendChild(actions);
+        experienciasLista.appendChild(div);
+      });
+    }
+
+    function renderCursos() {
+      const arr = load('cursos', []);
+      cursosLista.innerHTML = '';
+      if (arr.length === 0) {
+        cursosLista.innerHTML = '<div class="experiencia-item"><i class="fas fa-book text-primary"></i><div><b>Nenhum curso cadastrado</b></div></div>';
+        return;
+      }
+      arr.forEach((c, idx) => {
+        const div = document.createElement('div');
+        div.className = 'experiencia-item';
+        div.style.justifyContent = 'space-between';
+        div.innerHTML = `
+          <div style="display:flex; gap:12px; align-items:center;">
+            <i class="fas fa-book text-primary"></i>
+            <div>
+              <b>${c.nome}</b><br>
+              <small>${c.instituicao}</small>
+            </div>
+          </div>
+        `;
+        const actions = document.createElement('div');
+        const editI = document.createElement('i');
+        editI.className = 'fa-solid fa-pen text-primary';
+        editI.title = 'Editar';
+        editI.addEventListener('click', () => {
+          editing.cursoIndex = idx;
+          titleCurso.textContent = 'Editar Curso';
+          inputNomeCurso.value = c.nome;
+          inputInstituicaoCurso.value = c.instituicao;
+          modalCurso.show();
+        });
+        const delI = document.createElement('i');
+        delI.className = 'fa-solid fa-trash text-danger';
+        delI.title = 'Excluir';
+        delI.addEventListener('click', () => {
+          if (!confirmDelete('Excluir esse curso?')) return;
+          arr.splice(idx, 1);
+          save('cursos', arr);
+          renderCursos();
+        });
+        actions.appendChild(editI);
+        actions.appendChild(delI);
+        div.appendChild(actions);
+        cursosLista.appendChild(div);
+      });
+    }
+
+    // ---------- eventos (abrir modais) ----------
+    btnAbrirModal.addEventListener('click', () => {
+      const perfil = load('perfil', {});
+      inputNome.value = perfil.nome || '';
+      inputEmail.value = perfil.email || '';
+      inputLocal.value = perfil.local || '';
+      inputTelefone.value = perfil.telefone || '';
+      inputInstagram.value = perfil.instagram || '';
+      inputLinkedin.value = perfil.linkedin || '';
+      inputSite.value = perfil.site || '';
+      inputFoto.value = perfil.foto || '';
+      modalPerfil.show();
+    });
+
+    btnEditarSobre.addEventListener('click', () => {
+      inputSobre.value = load('sobre', '');
+      modalSobre.show();
+    });
+
+    btnEditarHabilidades.addEventListener('click', () => {
+      editing.habilidadeIndex = -1;
+      titleHabilidade.textContent = 'Adicionar Habilidade';
+      inputHabilidade.value = '';
+      modalHabilidade.show();
+    });
+
+    btnEditarFormacao.addEventListener('click', () => {
+      editing.formacaoIndex = -1;
+      titleFormacao.textContent = 'Adicionar Formação';
+      inputUniversidade.value = '';
+      inputCurso.value = '';
+      inputPeriodo.value = '';
+      modalFormacao.show();
+    });
+
+    btnEditarExperiencias.addEventListener('click', () => {
+      editing.experienciaIndex = -1;
+      titleExperiencia.textContent = 'Adicionar Experiência';
+      inputEmpresa.value = '';
+      inputCargo.value = '';
+      inputPeriodoExp.value = '';
+      modalExperiencia.show();
+    });
+
+    btnEditarCursos.addEventListener('click', () => {
+      editing.cursoIndex = -1;
+      titleCurso.textContent = 'Adicionar Curso';
+      inputNomeCurso.value = '';
+      inputInstituicaoCurso.value = '';
+      modalCurso.show();
+    });
+
+    // ---------- eventos salvar ----------
+    btnSalvarPerfil.addEventListener('click', () => {
+      const perfil = {
+        nome: inputNome.value.trim() || 'Seu Nome',
+        email: inputEmail.value.trim() || '',
+        local: inputLocal.value.trim() || '',
+        telefone: inputTelefone.value.trim() || '',
+        instagram: inputInstagram.value.trim() || '',
+        linkedin: inputLinkedin.value.trim() || '',
+        site: inputSite.value.trim() || '',
+        foto: inputFoto.value.trim() || fotoEl.src
+      };
+      save('perfil', perfil);
+      carregarPerfil();
+      modalPerfil.hide();
+    });
+
+    btnSalvarSobre.addEventListener('click', () => {
+      const val = inputSobre.value.trim();
+      save('sobre', val);
+      renderSobre();
+      modalSobre.hide();
+    });
+
+    // Habilidade salvar (adicionar ou editar)
+    btnSalvarHabilidade.addEventListener('click', () => {
+      const v = inputHabilidade.value.trim();
+      if (!v) return alert('Digite uma habilidade');
+      const arr = load('habilidades', []);
+      if (editing.habilidadeIndex >= 0) {
+        arr[editing.habilidadeIndex] = v;
+      } else {
+        arr.push(v);
+      }
+      save('habilidades', arr);
+      modalHabilidade.hide();
+      renderHabilidades();
+      editing.habilidadeIndex = -1;
+    });
+
+    // Formacao salvar
+    btnSalvarFormacao.addEventListener('click', () => {
+      const uni = inputUniversidade.value.trim();
+      const curso = inputCurso.value.trim();
+      const per = inputPeriodo.value.trim();
+      if (!uni || !curso || !per) return alert('Preencha todos os campos');
+      const arr = load('formacoes', []);
+      const obj = { universidade: uni, curso, periodo: per };
+      if (editing.formacaoIndex >= 0) {
+        arr[editing.formacaoIndex] = obj;
+      } else {
+        arr.push(obj);
+      }
+      save('formacoes', arr);
+      modalFormacao.hide();
+      renderFormacoes();
+      carregarPerfil();
+      editing.formacaoIndex = -1;
+    });
+
+    // Experiencia salvar
+    btnSalvarExperiencia.addEventListener('click', () => {
+      const empresa = inputEmpresa.value.trim();
+      const cargo = inputCargo.value.trim();
+      const per = inputPeriodoExp.value.trim();
+      if (!empresa || !cargo || !per) return alert('Preencha todos os campos');
+      const arr = load('experiencias', []);
+      const obj = { empresa, cargo, periodo: per };
+      if (editing.experienciaIndex >= 0) {
+        arr[editing.experienciaIndex] = obj;
+      } else {
+        arr.push(obj);
+      }
+      save('experiencias', arr);
+      modalExperiencia.hide();
+      renderExperiencias();
+      editing.experienciaIndex = -1;
+    });
+
+    // Curso salvar
+    btnSalvarCurso.addEventListener('click', () => {
+      const nome = inputNomeCurso.value.trim();
+      const inst = inputInstituicaoCurso.value.trim();
+      if (!nome || !inst) return alert('Preencha todos os campos');
+      const arr = load('cursos', []);
+      const obj = { nome, instituicao: inst };
+      if (editing.cursoIndex >= 0) {
+        arr[editing.cursoIndex] = obj;
+      } else {
+        arr.push(obj);
+      }
+      save('cursos', arr);
+      modalCurso.hide();
+      renderCursos();
+      editing.cursoIndex = -1;
+    });
+
+    // Resetar tudo
+    btnResetar.addEventListener('click', () => {
+      if (!confirm('Tem certeza que deseja reiniciar todo o perfil? Isso apagará os dados salvos localmente.')) return;
+      localStorage.removeItem('perfil');
+      localStorage.removeItem('sobre');
+      localStorage.removeItem('habilidades');
+      localStorage.removeItem('formacoes');
+      localStorage.removeItem('experiencias');
+      localStorage.removeItem('cursos');
+      // Re-render
+      carregarPerfil();
+      renderSobre();
+      renderHabilidades();
+      renderFormacoes();
+      renderExperiencias();
+      renderCursos();
+    });
+
+    // ---------- inicializa render ----------
+    carregarPerfil();
+    renderSobre();
+    renderHabilidades();
+    renderFormacoes();
+    renderExperiencias();
+    renderCursos();
+  });
+  </script>
+</body>
+</html>

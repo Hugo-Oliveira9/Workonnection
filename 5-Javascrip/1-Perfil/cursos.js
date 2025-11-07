@@ -1,82 +1,87 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const btnEditarCursos = document.getElementById('btnEditarCursos');
-  const modalCursos = new bootstrap.Modal(document.getElementById('modalCursos'));
+const btnEditarCurso = document.getElementById('btnEditarCursos');
+const modalCurso = new bootstrap.Modal(document.getElementById('modalCurso'));
+const titleCurso = document.getElementById('titleCurso');
+const inputCursoNome = document.getElementById('inputNomeCurso');
+const inputCursoInstituicao = document.getElementById('inputInstituicaoCurso');
+const inputCursoPeriodo = document.getElementById('inputPeriodoCurso');
+const btnSalvarCurso = document.getElementById('btnSalvarCurso');
+const cursosLista = document.getElementById('cursos-lista');
 
-  // IDs corrigidos
-  const inputNomeCurso = document.getElementById('inputNomeCurso');
-  const inputInstituicaoCurso = document.getElementById('inputInstituicaoCurso');
-  const inputPeriodoCurso = document.getElementById('inputPeriodoCurso');
+window.editing.cursoIndex = -1;
 
-  const listaTempCursos = document.getElementById('listaCursosTemp');
-  const btnSalvarCurso = document.getElementById('btnSalvarCurso');
-  const cursosDiv = document.getElementById('cursos-lista');
-
-  let cursos = JSON.parse(localStorage.getItem('cursos')) || [];
-
-  function atualizarCursos() {
-    cursosDiv.innerHTML = '';
-    if (cursos.length === 0) {
-      cursosDiv.innerHTML = `
-        <div class="experiencia-item">
-          <i class="fas fa-book text-primary"></i>
-          <div><b>Nenhum curso cadastrado</b></div>
-        </div>`;
-    } else {
-      cursos.forEach((curso, index) => {
-        const div = document.createElement('div');
-        div.className = 'experiencia-item';
-        div.innerHTML = `
-          <i class="fas fa-book text-primary"></i>
-          <div>
-            <b>${curso.nome}</b><br>
-            <span class="instituicao">${curso.instituicao}</span><br>
-            <div class="detalhes">
-              <span><i class="fas fa-calendar-alt text-info"></i> ${curso.periodo}</span>
-            </div>
-          </div>
-          <span class="btn-excluir" style="cursor:pointer; color:red; font-weight:bold; margin-left:10px;">&times;</span>
-        `;
-        div.querySelector('.btn-excluir').addEventListener('click', () => {
-          cursos.splice(index, 1);
-          localStorage.setItem('cursos', JSON.stringify(cursos));
-          atualizarCursos();
-        });
-        cursosDiv.appendChild(div);
-      });
-    }
+window.renderCursos = function() {
+  const arr = load('cursos', []);
+  cursosLista.innerHTML = '';
+  if (!arr.length) {
+    cursosLista.innerHTML = '<div class="curso-item"><i class="fas fa-book text-primary"></i><div><b>Nenhum curso cadastrado</b></div></div>';
+    return;
   }
 
-  btnEditarCursos.addEventListener('click', () => {
-    listaTempCursos.innerHTML = '';
-    cursos.forEach(curso => {
-      const li = document.createElement('li');
-      li.textContent = `${curso.nome} - ${curso.instituicao} (${curso.periodo})`;
-      listaTempCursos.appendChild(li);
+  arr.forEach((c, idx) => {
+    const div = document.createElement('div');
+    div.className = 'curso-item';
+    div.style.justifyContent = 'space-between';
+    div.innerHTML = `
+      <div style="display:flex; gap:12px; align-items:center;">
+        <i class="fas fa-graduation-cap text-primary"></i>
+        <div>
+          <b>${c.nome}</b><br>
+          <small>${c.instituicao} • ${c.periodo}</small>
+        </div>
+      </div>
+    `;
+    const actions = document.createElement('div');
+    actions.className = 'small-actions';
+    const editI = document.createElement('i');
+    editI.className = 'fa-solid fa-pen text-primary';
+    editI.title = 'Editar';
+    editI.addEventListener('click', () => {
+      window.editing.cursoIndex = idx;
+      titleCurso.textContent = 'Editar Curso';
+      inputCursoNome.value = c.nome;
+      inputCursoInstituicao.value = c.instituicao;
+      inputCursoPeriodo.value = c.periodo;
+      modalCurso.show();
     });
-
-    // Limpar campos
-    inputNomeCurso.value = '';
-    inputInstituicaoCurso.value = '';
-    inputPeriodoCurso.value = '';
-
-    modalCursos.show();
+    const delI = document.createElement('i');
+    delI.className = 'fa-solid fa-trash text-danger';
+    delI.title = 'Excluir';
+    delI.addEventListener('click', () => {
+      if (!confirmDelete('Excluir esse curso?')) return;
+      arr.splice(idx, 1);
+      save('cursos', arr);
+      renderCursos();
+    });
+    actions.appendChild(editI);
+    actions.appendChild(delI);
+    div.appendChild(actions);
+    cursosLista.appendChild(div);
   });
+};
 
-  btnSalvarCurso.addEventListener('click', () => {
-    const nome = inputNomeCurso.value.trim();
-    const instituicao = inputInstituicaoCurso.value.trim();
-    const periodo = inputPeriodoCurso.value.trim();
+btnEditarCurso.addEventListener('click', () => {
+  window.editing.cursoIndex = -1;
+  titleCurso.textContent = 'Adicionar Curso';
+  inputCursoNome.value = '';
+  inputCursoInstituicao.value = '';
+  inputCursoPeriodo.value = '';
+  modalCurso.show();
+});
 
-    if (!nome || !instituicao || !periodo) {
-      alert('Preencha todos os campos antes de salvar!');
-      return;
-    }
-
-    cursos.push({ nome, instituicao, periodo });
-    localStorage.setItem('cursos', JSON.stringify(cursos));
-    atualizarCursos();
-    modalCursos.hide();
-  });
-
-  atualizarCursos();
+btnSalvarCurso.addEventListener('click', () => {
+  const nome = inputCursoNome.value.trim();
+  const instituicao = inputCursoInstituicao.value.trim();
+  const periodo = inputCursoPeriodo.value.trim();
+  if (!nome || !instituicao || !periodo) return alert('Preencha todos os campos obrigatórios');
+  const arr = load('cursos', []);
+  const obj = { nome, instituicao, periodo };
+  if (window.editing.cursoIndex >= 0) {
+    arr[window.editing.cursoIndex] = obj;
+  } else {
+    arr.push(obj);
+  }
+  save('cursos', arr);
+  modalCurso.hide();
+  renderCursos();
+  window.editing.cursoIndex = -1;
 });

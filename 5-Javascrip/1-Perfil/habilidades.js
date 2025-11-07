@@ -1,53 +1,51 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const btnEditar = document.getElementById('btnEditarHabilidades');
-  const modal = new bootstrap.Modal(document.getElementById('modalHabilidades'));
-  const inputHabilidade = document.getElementById('inputHabilidade');
-  const listaTemp = document.getElementById('listaHabilidadesTemp');
-  const btnSalvar = document.getElementById('btnSalvarHabilidades');
-  const listaHabilidadesDiv = document.getElementById('habilidades-lista');
+const btnEditarHabilidades = document.getElementById('btnEditarHabilidades');
+const modalHabilidade = new bootstrap.Modal(document.getElementById('modalHabilidade'));
+const inputHabilidade = document.getElementById('inputHabilidade');
+const btnSalvarHabilidade = document.getElementById('btnSalvarHabilidade');
+const habilidadesLista = document.getElementById('habilidades-lista');
 
-  let habilidades = JSON.parse(localStorage.getItem('habilidades')) || [];
+window.editing.habilidadeIndex = -1;
 
-  function atualizarLista() {
-    listaHabilidadesDiv.innerHTML = '';
-    if (habilidades.length === 0) {
-      listaHabilidadesDiv.innerHTML = '<span class="badge bg-secondary">Clique no ícone para adicionar</span>';
-    } else {
-      habilidades.forEach((h, index) => {
-        const span = document.createElement('span');
-        span.className = 'badge bg-primary me-1 mb-1';
-        span.style.cursor = 'pointer';
-        span.innerHTML = `${h} <span style="margin-left:4px; font-weight:bold;">&times;</span>`;
-        // Excluir ao clicar no X
-        span.querySelector('span').addEventListener('click', (e) => {
-          e.stopPropagation(); // evita outros cliques
-          habilidades.splice(index, 1);
-          localStorage.setItem('habilidades', JSON.stringify(habilidades));
-          atualizarLista();
-        });
-        listaHabilidadesDiv.appendChild(span);
-      });
-    }
+function renderHabilidades() {
+  const arr = load('habilidades', []);
+  habilidadesLista.innerHTML = '';
+  if (arr.length === 0) {
+    habilidadesLista.innerHTML = '<span class="badge bg-secondary">Clique no ícone para adicionar</span>';
+    return;
   }
-
-  btnEditar.addEventListener('click', () => {
-    listaTemp.innerHTML = '';
-    habilidades.forEach(h => {
-      const li = document.createElement('li');
-      li.textContent = h;
-      listaTemp.appendChild(li);
+  arr.forEach((h, idx) => {
+    const span = document.createElement('span');
+    span.className = 'badge bg-primary m-1';
+    span.style.display = 'inline-flex';
+    span.style.alignItems = 'center';
+    span.innerHTML = `${h} <i class="fa-solid fa-xmark ms-2" style="cursor:pointer;" title="Excluir"></i>`;
+    span.querySelector('i').addEventListener('click', () => {
+      if (!confirmDelete('Excluir essa habilidade?')) return;
+      arr.splice(idx, 1);
+      save('habilidades', arr);
+      renderHabilidades();
     });
-    inputHabilidade.value = '';
-    modal.show();
+    habilidadesLista.appendChild(span);
   });
+}
 
-  btnSalvar.addEventListener('click', () => {
-    const nova = inputHabilidade.value.trim();
-    if (nova) habilidades.push(nova);
-    localStorage.setItem('habilidades', JSON.stringify(habilidades));
-    atualizarLista();
-    modal.hide();
-  });
+btnEditarHabilidades.addEventListener('click', () => {
+  inputHabilidade.value = '';
+  window.editing.habilidadeIndex = -1;
+  modalHabilidade.show();
+});
 
-  atualizarLista();
+btnSalvarHabilidade.addEventListener('click', () => {
+  const val = inputHabilidade.value.trim();
+  if (!val) return alert('Digite uma habilidade');
+  const arr = load('habilidades', []);
+  if (window.editing.habilidadeIndex >= 0) {
+    arr[window.editing.habilidadeIndex] = val;
+  } else {
+    arr.push(val);
+  }
+  save('habilidades', arr);
+  modalHabilidade.hide();
+  renderHabilidades();
+  window.editing.habilidadeIndex = -1;
 });

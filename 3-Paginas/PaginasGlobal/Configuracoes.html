@@ -37,31 +37,8 @@
     <!-- Gerenciamento de Perfis -->
     <div class="card-config">
       <h5>Gerenciamento de Perfis</h5>
-      <div class="perfil-item">
-        <img src="https://img.freepik.com/fotos-gratis/homem-de-negocios-de-vista-frontal-quer-apertar-as-maos_23-2148763831.jpg" alt="">
-        <div class="perfil-info">
-          <strong>João Pedro Santos</strong>
-          <p>Conectado agora</p>
-        </div>
-        <button class="btn btn-outline-primary">Entrar</button>
-      </div>
-
-      <div class="perfil-item">
-        <img src="https://tse1.mm.bing.net/th/id/OIP.U7Uw9ZtrP1HNx9wObhTtRwAAAA?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3" alt="">
-        <div class="perfil-info">
-          <strong>Giovanna Pizzas e Esfihas</strong>
-          <p>Conectado há 20 minutos</p>
-        </div>
-        <button class="btn btn-outline-primary">Entrar</button>
-      </div>
-
-      <div class="perfil-item">
-        <img src="https://img.freepik.com/fotos-gratis/homem-de-negocios-de-vista-frontal-quer-apertar-as-maos_23-2148763831.jpg" alt="">
-        <div class="perfil-info">
-          <strong>João Pedro Santos Estudante</strong>
-          <p>Conectado há 2 dias</p>
-        </div>
-        <button class="btn btn-outline-primary">Entrar</button>
+      <div id="containerPerfis">
+        <!-- Perfis serão inseridos aqui via JS -->
       </div>
     </div>
 
@@ -69,59 +46,45 @@
     <div class="card-config">
       <h5>Tema do sistema</h5>
       <div class="tema-toggle">
-        <label>
-          <input type="radio" name="tema" value="claro" checked> Claro
-        </label>
-        <label>
-          <input type="radio" name="tema" value="escuro"> Escuro
-        </label>
+        <label><input type="radio" name="tema" value="claro" checked> Claro</label>
+        <label><input type="radio" name="tema" value="escuro"> Escuro</label>
       </div>
     </div>
 
-        <!-- Notificações -->
+    <!-- Notificações -->
     <div class="card-config">
-    <h5>Notificações</h5>
-    <div class="config-item">
-        <label>
-        <input type="checkbox" checked> Receber notificações por e-mail
-        </label>
-    </div>
-    <div class="config-item">
-        <label>
-        <input type="checkbox"> Receber notificações no aplicativo
-        </label>
-    </div>
-    <div class="config-item">
-        <label>
-        <input type="checkbox" checked> Sons de alerta ativados
-        </label>
-    </div>
+      <h5>Notificações</h5>
+      <div class="config-item">
+        <label><input type="checkbox" checked> Receber notificações por e-mail</label>
+      </div>
+      <div class="config-item">
+        <label><input type="checkbox"> Receber notificações no aplicativo</label>
+      </div>
+      <div class="config-item">
+        <label><input type="checkbox" checked> Sons de alerta ativados</label>
+      </div>
     </div>
 
     <!-- Idioma -->
     <div class="card-config">
-    <h5>Idioma</h5>
-    <div class="config-item">
+      <h5>Idioma</h5>
+      <div class="config-item">
         <select class="form-select" style="max-width: 200px;">
-        <option selected>Português (BR)</option>
-        <option>English (US)</option>
-        <option>Español</option>
+          <option selected>Português (BR)</option>
+          <option>English (US)</option>
+          <option>Español</option>
         </select>
-    </div>
+      </div>
     </div>
 
     <!-- Integrações -->
     <div class="card-config">
-    <h5>Integrações</h5>
-    <div class="config-item">
+      <h5>Integrações</h5>
+      <div class="config-item">
         <button class="btn btn-outline-secondary">Conectar ao Google</button>
-    </div>
-    <div class="config-item">
         <button class="btn btn-outline-secondary">Conectar ao Slack</button>
-    </div>
-    <div class="config-item">
         <button class="btn btn-outline-secondary">Conectar ao Teams</button>
-    </div>
+      </div>
     </div>
 
     <!-- Logout -->
@@ -137,6 +100,8 @@
 
   <script src="/5-Javascrip/configuracoes.js"></script>
   <script src="/4-LocalStorage/logout.js"></script>
+  <script src="/5-Javascrip/2-Configuracoes/gerenciarPerfils.js"></script>
+  <script src="/5-Javascrip/3-Auth/auth.js"></script>
 
 </body>
 </html>

@@ -1,5 +1,5 @@
 // cursos.js
-import { save, load } from './helpers.js';
+import { save, load, getUserKey } from './helpers.js';
 
 // Garante que o objeto global window.editing exista
 if (!window.editing) window.editing = {};
@@ -17,7 +17,7 @@ window.editing.cursoIndex = -1;
 
 // Exporta a função para ser usada no main.js
 export function renderCursos() {
-  const arr = load('cursos', []);
+  const arr = load(getUserKey('cursos'), []);
   cursosLista.innerHTML = '';
 
   if (!arr.length) {
@@ -67,7 +67,7 @@ export function renderCursos() {
     delI.addEventListener('click', () => {
       if (!confirm('Excluir esse curso?')) return;
       arr.splice(idx, 1);
-      save('cursos', arr);
+      save(getUserKey('cursos'), arr);
       renderCursos();
     });
 
@@ -96,7 +96,7 @@ btnSalvarCurso.addEventListener('click', () => {
 
   if (!nome || !instituicao || !periodo) return alert('Preencha todos os campos obrigatórios.');
 
-  const arr = load('cursos', []);
+  const arr = load(getUserKey('cursos'), []);
   const obj = { nome, instituicao, periodo };
 
   if (window.editing.cursoIndex >= 0) {
@@ -105,7 +105,7 @@ btnSalvarCurso.addEventListener('click', () => {
     arr.push(obj);
   }
 
-  save('cursos', arr);
+  save(getUserKey('cursos'), arr);
   modalCurso.hide();
   renderCursos();
   window.editing.cursoIndex = -1;

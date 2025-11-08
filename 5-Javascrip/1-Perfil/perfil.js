@@ -16,35 +16,58 @@ const inputSite = document.getElementById('inputSite');
 const inputFoto = document.getElementById('inputFoto');
 const btnSalvarPerfil = document.getElementById('btnSalvarPerfil');
 
-function carregarPerfil() {
+export function carregarPerfil() {
   const usuarioLogado = getCurrentUser();
   if (!usuarioLogado) return;
 
-  // carrega o perfil específico do usuário logado
-  const perfil = load('perfil', {
-    nome: usuarioLogado.nome || 'Seu Nome',
-    email: usuarioLogado.email || '',
-    local: '',
-    telefone: usuarioLogado.telefone || '',
-    instagram: '',
-    linkedin: '',
-    site: '',
-    foto: 'https://img.freepik.com/fotos-gratis/homem-de-negocios-de-vista-frontal-quer-apertar-as-maos_23-2148763831.jpg'
-  });
+  // 1️⃣ Tenta carregar o perfil salvo no localStorage
+  let perfil = load(getUserKey('perfil'), null);
 
+  // 2️⃣ Se não existir perfil, tenta pegar os dados do cadastro
+  if (!perfil) {
+    const cadastro = load(`cadastroDados_${usuarioLogado.email}`, null);
+    if (cadastro) {
+      perfil = {
+        nome: cadastro.nomeDadosPessoais || 'Seu Nome',
+        email: cadastro.emailDadosPessoais || usuarioLogado.email,
+        local: '',
+        telefone: cadastro.telefoneDadosPessoais || '',
+        instagram: '',
+        linkedin: '',
+        site: '',
+        foto: 'https://img.freepik.com/fotos-gratis/homem-de-negocios-de-vista-frontal-quer-apertar-as-maos_23-2148763831.jpg'
+      };
+      save(getUserKey('perfil'), perfil);
+    }
+  }
+
+  // 3️⃣ Se ainda assim não houver, cria um perfil padrão
+  if (!perfil) {
+    perfil = {
+      nome: 'Seu Nome',
+      email: usuarioLogado.email,
+      local: '',
+      telefone: '',
+      instagram: '',
+      linkedin: '',
+      site: '',
+      foto: 'https://img.freepik.com/fotos-gratis/homem-de-negocios-de-vista-frontal-quer-apertar-as-maos_23-2148763831.jpg'
+    };
+    save(getUserKey('perfil'), perfil);
+  }
+
+  // Atualiza o conteúdo da tela
   nomeEl.textContent = perfil.nome || 'Nome:';
+  fotoEl.src = perfil.foto || '';
 
-  const formacoes = load('formacoes', []);
+  const formacoes = load(getUserKey('formacoes'), []);
   if (formacoes.length) {
     const ultima = formacoes[formacoes.length - 1];
     formacaoSmall.textContent = `${ultima.curso} - ${ultima.universidade}`;
   } else {
-    formacaoSmall.textContent = perfil.email ? perfil.email : 'Formação:';
+    formacaoSmall.textContent = perfil.email || 'Formação:';
   }
 
-  fotoEl.src = perfil.foto || '';
-
-  // contatos
   document.getElementById('perfil-local').innerHTML =
     `<i class="fas fa-map-marker-alt text-primary"></i> ${perfil.local || 'Local:'}`;
   document.getElementById('perfil-telefone').innerHTML =
@@ -57,9 +80,9 @@ function carregarPerfil() {
     `<i class="fas fa-globe text-info"></i> ${perfil.site || 'Site:'}`;
 }
 
-// abrir modal perfil
+// 🔹 Abrir modal com dados atuais
 btnAbrirModal.addEventListener('click', () => {
-  const perfil = load('perfil', {});
+  const perfil = load(getUserKey('perfil'), {});
   inputNome.value = perfil.nome || '';
   inputEmail.value = perfil.email || '';
   inputLocal.value = perfil.local || '';
@@ -71,7 +94,7 @@ btnAbrirModal.addEventListener('click', () => {
   modalPerfil.show();
 });
 
-// salvar perfil
+// 🔹 Salvar perfil atualizado
 btnSalvarPerfil.addEventListener('click', () => {
   const perfil = {
     nome: inputNome.value.trim() || 'Seu Nome',
@@ -84,10 +107,10 @@ btnSalvarPerfil.addEventListener('click', () => {
     foto: inputFoto.value.trim() || fotoEl.src
   };
 
-  save('perfil', perfil);
+  save(getUserKey('perfil'), perfil);
   carregarPerfil();
   modalPerfil.hide();
 });
 
-// renderiza ao carregar
+// 🔹 Carrega tudo quando a página for aberta
 document.addEventListener('DOMContentLoaded', carregarPerfil);

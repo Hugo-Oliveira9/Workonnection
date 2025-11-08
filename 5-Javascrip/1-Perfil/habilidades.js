@@ -1,5 +1,4 @@
-// habilidades.js
-import { save, load } from './helpers.js';
+import { save, load, getUserKey } from './helpers.js';
 
 // Garante que o objeto global editing exista
 if (!window.editing) window.editing = {};
@@ -14,7 +13,9 @@ window.editing.habilidadeIndex = -1;
 
 // Exporta a função para o main.js poder chamar também
 export function renderHabilidades() {
-  const arr = load('habilidades', []);
+  const key = getUserKey('habilidades');
+  const arr = load(key, []);
+
   habilidadesLista.innerHTML = '';
 
   if (arr.length === 0) {
@@ -30,10 +31,11 @@ export function renderHabilidades() {
     span.style.alignItems = 'center';
     span.innerHTML = `${h} <i class="fa-solid fa-xmark ms-2" style="cursor:pointer;" title="Excluir"></i>`;
 
+    // Excluir habilidade
     span.querySelector('i').addEventListener('click', () => {
       if (!confirm('Excluir essa habilidade?')) return;
       arr.splice(idx, 1);
-      save('habilidades', arr);
+      save(key, arr);
       renderHabilidades();
     });
 
@@ -53,7 +55,8 @@ btnSalvarHabilidade.addEventListener('click', () => {
   const val = inputHabilidade.value.trim();
   if (!val) return alert('Digite uma habilidade');
 
-  const arr = load('habilidades', []);
+  const key = getUserKey('habilidades');
+  const arr = load(key, []);
 
   if (window.editing.habilidadeIndex >= 0) {
     arr[window.editing.habilidadeIndex] = val;
@@ -61,13 +64,13 @@ btnSalvarHabilidade.addEventListener('click', () => {
     arr.push(val);
   }
 
-  save('habilidades', arr);
+  save(key, arr);
   modalHabilidade.hide();
   renderHabilidades();
   window.editing.habilidadeIndex = -1;
 });
 
-// Garante que, ao carregar a página, as habilidades apareçam
+// Renderiza automaticamente ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
   renderHabilidades();
 });

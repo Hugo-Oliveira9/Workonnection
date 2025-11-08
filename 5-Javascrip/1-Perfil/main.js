@@ -1,5 +1,6 @@
 import { key, save, load, confirmDelete } from './helpers.js';
 
+
 document.addEventListener('DOMContentLoaded', () => {
   if (!window.editing) window.editing = {};
 
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!confirm('Tem certeza que deseja reiniciar todo o perfil? Isso apagará os dados deste usuário.')) return;
 
       ['perfil', 'sobre', 'habilidades', 'formacoes', 'experiencias', 'cursos'].forEach(k => {
-        localStorage.removeItem(key(k));
+        localStorage.removeItem(getUserKey(k));
       });
 
       if (typeof carregarPerfil === 'function') carregarPerfil();

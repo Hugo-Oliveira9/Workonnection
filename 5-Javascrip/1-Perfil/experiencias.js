@@ -1,5 +1,5 @@
 // experiencias.js
-import { save, load } from './helpers.js';
+import { save, load, getUserKey } from './helpers.js';
 
 // Garante que o objeto global window.editing exista
 if (!window.editing) window.editing = {};
@@ -18,7 +18,7 @@ window.editing.experienciaIndex = -1;
 
 // Exporta a função para que o main.js possa chamá-la
 export function renderExperiencias() {
-  const arr = load('experiencias', []);
+  const arr = load(getUserKey('experiencias'), []);
   experienciasLista.innerHTML = '';
 
   if (!arr.length) {
@@ -70,7 +70,7 @@ export function renderExperiencias() {
     delI.addEventListener('click', () => {
       if (!confirm('Excluir essa experiência?')) return;
       arr.splice(idx, 1);
-      save('experiencias', arr);
+      save(getUserKey('experiencias'), arr);
       renderExperiencias();
     });
 
@@ -101,7 +101,7 @@ btnSalvarExperiencia.addEventListener('click', () => {
 
   if (!empresa || !cargo || !periodo) return alert('Preencha todos os campos obrigatórios.');
 
-  const arr = load('experiencias', []);
+  const arr = load(getUserKey('experiencias'), []);
   const obj = { empresa, cargo, periodo, descricao };
 
   if (window.editing.experienciaIndex >= 0) {
@@ -110,7 +110,7 @@ btnSalvarExperiencia.addEventListener('click', () => {
     arr.push(obj);
   }
 
-  save('experiencias', arr);
+  save(getUserKey('experiencias'), arr);
   modalExperiencia.hide();
   renderExperiencias();
   window.editing.experienciaIndex = -1;

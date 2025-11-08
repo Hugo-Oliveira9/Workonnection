@@ -1,46 +1,35 @@
 // helpers.js
-
-// --- SALVAR E CARREGAR COM BASE NO USUÁRIO ---
-export function save(key, data) {
-  const userKey = getUserKey(key);
-  localStorage.setItem(userKey, JSON.stringify(data));
+export function key(base) {
+  const usuario = localStorage.getItem('usuarioLogado');
+  return `${base}_${usuario}`;
 }
 
-export function load(key, defaultValue) {
-  const userKey = getUserKey(key);
-  const item = localStorage.getItem(userKey);
-  return item ? JSON.parse(item) : defaultValue;
+export function save(chave, valor) {
+  localStorage.setItem(chave, JSON.stringify(valor));
 }
 
-// --- IDENTIFICAR USUÁRIO ATUAL ---
-export function getUserKey(key) {
-  const user = getCurrentUser();
-  if (!user || !user.email) return key;
-  return `${key}_${user.email}`;
-}
-
-export function getCurrentUser() {
-  const user = localStorage.getItem('usuarioLogado');
+export function load(chave, padrao = null) {
+  const valor = localStorage.getItem(chave);
   try {
-    return user ? JSON.parse(user) : null;
+    return valor ? JSON.parse(valor) : padrao;
   } catch {
-    // Corrige dados antigos (ex: "user1@teste")
-    const obj = { email: user };
-    localStorage.setItem('usuarioLogado', JSON.stringify(obj));
-    return obj;
+    return padrao;
   }
 }
 
-export function setCurrentUser(userData) {
-  localStorage.setItem('usuarioLogado', JSON.stringify(userData));
-}
-
-export function logout() {
-  localStorage.removeItem('usuarioLogado');
-  window.location.href = 'login.html';
-}
-
-// --- CONFIRMAR EXCLUSÕES ---
-export function confirmDelete(msg = 'Deseja realmente excluir?') {
+export function confirmDelete(msg = 'Tem certeza que deseja excluir?') {
   return confirm(msg);
+}
+
+// 🔹 Retorna o e-mail do usuário logado
+export function getCurrentUser() {
+  const email = localStorage.getItem('usuarioLogado');
+  if (!email) return null;
+  return { email };
+}
+
+// 🔹 Gera uma chave com base no usuário logado
+export function getUserKey(base) {
+  const usuario = getCurrentUser();
+  return usuario ? `${base}_${usuario.email}` : base;
 }

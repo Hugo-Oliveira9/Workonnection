@@ -1,5 +1,5 @@
 // formacao.js
-import { save, load } from './helpers.js';
+import { save, load, getUserKey } from './helpers.js';
 
 // Garante que o objeto global editing exista
 if (!window.editing) window.editing = {};
@@ -17,7 +17,7 @@ window.editing.formacaoIndex = -1;
 
 // Função exportada para renderizar formações
 export function renderFormacoes() {
-  const arr = load('formacoes', []);
+  const arr = load(getUserKey('formacoes'), []);
   formacoesLista.innerHTML = '';
 
   if (!arr.length) {
@@ -67,7 +67,7 @@ export function renderFormacoes() {
     delI.addEventListener('click', () => {
       if (!confirm('Excluir essa formação?')) return;
       arr.splice(idx, 1);
-      save('formacoes', arr);
+      save(getUserKey('formacoes'), arr);
       renderFormacoes();
     });
 
@@ -96,7 +96,7 @@ btnSalvarFormacao.addEventListener('click', () => {
 
   if (!uni || !curso || !per) return alert('Preencha todos os campos.');
 
-  const arr = load('formacoes', []);
+  const arr = load(getUserKey('formacoes'), []);
   const obj = { universidade: uni, curso, periodo: per };
 
   if (window.editing.formacaoIndex >= 0) {
@@ -105,7 +105,7 @@ btnSalvarFormacao.addEventListener('click', () => {
     arr.push(obj);
   }
 
-  save('formacoes', arr);
+  save(getUserKey('formacoes'), arr);
   modalFormacao.hide();
   renderFormacoes();
   window.editing.formacaoIndex = -1;

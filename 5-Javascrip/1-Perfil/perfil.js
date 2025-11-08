@@ -1,3 +1,5 @@
+import { save, load, getUserKey, getCurrentUser } from './helpers.js';
+
 const fotoEl = document.getElementById('perfil-foto');
 const nomeEl = document.getElementById('perfil-nome');
 const formacaoSmall = document.getElementById('perfil-formacao');
@@ -15,11 +17,15 @@ const inputFoto = document.getElementById('inputFoto');
 const btnSalvarPerfil = document.getElementById('btnSalvarPerfil');
 
 function carregarPerfil() {
+  const usuarioLogado = getCurrentUser();
+  if (!usuarioLogado) return;
+
+  // carrega o perfil específico do usuário logado
   const perfil = load('perfil', {
-    nome: 'Seu Nome',
-    email: '',
+    nome: usuarioLogado.nome || 'Seu Nome',
+    email: usuarioLogado.email || '',
     local: '',
-    telefone: '',
+    telefone: usuarioLogado.telefone || '',
     instagram: '',
     linkedin: '',
     site: '',
@@ -30,7 +36,8 @@ function carregarPerfil() {
 
   const formacoes = load('formacoes', []);
   if (formacoes.length) {
-    formacaoSmall.textContent = formacoes[formacoes.length - 1].curso + ' - ' + formacoes[formacoes.length - 1].universidade;
+    const ultima = formacoes[formacoes.length - 1];
+    formacaoSmall.textContent = `${ultima.curso} - ${ultima.universidade}`;
   } else {
     formacaoSmall.textContent = perfil.email ? perfil.email : 'Formação:';
   }
@@ -38,11 +45,16 @@ function carregarPerfil() {
   fotoEl.src = perfil.foto || '';
 
   // contatos
-  document.getElementById('perfil-local').innerHTML = '<i class="fas fa-map-marker-alt text-primary"></i> ' + (perfil.local || 'Local:');
-  document.getElementById('perfil-telefone').innerHTML = '<i class="fas fa-phone text-success"></i> ' + (perfil.telefone || 'Telefone:');
-  document.getElementById('perfil-instagram').innerHTML = '<i class="fab fa-instagram text-danger"></i> ' + (perfil.instagram || 'Instagram:');
-  document.getElementById('perfil-linkedin').innerHTML = '<i class="fab fa-linkedin text-primary"></i> ' + (perfil.linkedin || 'LinkedIn:');
-  document.getElementById('perfil-site').innerHTML = '<i class="fas fa-globe text-info"></i> ' + (perfil.site || 'Site:');
+  document.getElementById('perfil-local').innerHTML =
+    `<i class="fas fa-map-marker-alt text-primary"></i> ${perfil.local || 'Local:'}`;
+  document.getElementById('perfil-telefone').innerHTML =
+    `<i class="fas fa-phone text-success"></i> ${perfil.telefone || 'Telefone:'}`;
+  document.getElementById('perfil-instagram').innerHTML =
+    `<i class="fab fa-instagram text-danger"></i> ${perfil.instagram || 'Instagram:'}`;
+  document.getElementById('perfil-linkedin').innerHTML =
+    `<i class="fab fa-linkedin text-primary"></i> ${perfil.linkedin || 'LinkedIn:'}`;
+  document.getElementById('perfil-site').innerHTML =
+    `<i class="fas fa-globe text-info"></i> ${perfil.site || 'Site:'}`;
 }
 
 // abrir modal perfil
@@ -71,7 +83,11 @@ btnSalvarPerfil.addEventListener('click', () => {
     site: inputSite.value.trim() || '',
     foto: inputFoto.value.trim() || fotoEl.src
   };
+
   save('perfil', perfil);
   carregarPerfil();
   modalPerfil.hide();
 });
+
+// renderiza ao carregar
+document.addEventListener('DOMContentLoaded', carregarPerfil);

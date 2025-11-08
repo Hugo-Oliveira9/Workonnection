@@ -1,17 +1,11 @@
-// Espera até que todo o conteúdo HTML da página seja carregado
+// salvaDados.js
 document.addEventListener('DOMContentLoaded', () => {
-
-  // Seleciona o formulário que está dentro da section com a classe "form-box"
   const form = document.querySelector('section.form-box form');
-
-  // Se o formulário não for encontrado, interrompe o script
   if (!form) return;
 
-  // Adiciona um ouvinte de evento para quando o formulário for enviado (submit)
   form.addEventListener('submit', (event) => {
-    event.preventDefault(); // Impede o envio padrão (evita recarregar a página)
+    event.preventDefault();
 
-    // Captura os valores dos campos de dados pessoais, usando os IDs definidos no HTML
     const nome = document.getElementById('nomeDadosPessoais')?.value || '';
     const cpf = document.getElementById('cpfDadosPessoais')?.value || '';
     const dataNascimento = document.getElementById('dataNascimentoDadosPessoais')?.value || '';
@@ -19,7 +13,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const email = document.getElementById('emailDadosPessoais')?.value || '';
     const senha = document.getElementById('senhaDadosPessoais')?.value || '';
 
-    // Cria um objeto com os dados capturados, com os mesmos nomes usados nos IDs
+    if (!email || !senha) {
+      alert('Preencha o e-mail e a senha.');
+      return;
+    }
+
+    // Cria o objeto de dados pessoais
     const dadosPessoais = {
       nomeDadosPessoais: nome,
       cpfDadosPessoais: cpf,
@@ -29,13 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
       senhaDadosPessoais: senha
     };
 
-    // Salva o objeto no localStorage com a chave "cadastroDados", convertido para string JSON
-    localStorage.setItem('cadastroDados', JSON.stringify(dadosPessoais));
+    // Chave única para cada usuário com base no e-mail
+    const chaveUsuario = `cadastroDados_${email}`;
 
-    // Mostra mensagem de sucesso
+    // Salva no localStorage
+    localStorage.setItem(chaveUsuario, JSON.stringify(dadosPessoais));
+
     alert('Dados pessoais salvos com sucesso!');
-
-    // Redireciona o usuário para a página inicial
     window.location.href = '/index.html';
   });
 });

@@ -37,78 +37,92 @@
         <div class="filtro-item"><i class="fas fa-filter"></i> Outros Filtros</div>
     </div>
 
-    <!-- Vaga 1 -->
-    <div class="vaga-card" id="vaga1">
-        <div class="vaga-header">
-            <img src="/6-Imagens/FotosPerfis/Tech-Soluciones.png" alt="Logo Empresa">
-            <div>
-                <h5>Tech Soluciones</h5>
-                <small>Desenvolvimento de Software</small>
-            </div>
-        </div>
-        <div class="vaga-body">
-            <p><b>Cargo:</b> Assistente de Suporte Técnico</p>
-            <p><b>Descrição:</b> Auxílio remoto a clientes com problemas básicos de hardware e software.</p>
-            <p><b>Modalidade:</b> Presencial</p>
-            <p><b>Horário:</b> A combinar</p>
-            <p><b>Benficios:</b> Vale Alimentação | Vale Transporte</p>
-            <p><b>Localização:</b> São Paulo - SP</p>
-        </div>
-        <div class="vaga-footer">
-            <button class="btn btn-success btn-sm" onclick="openWhatsApp('Tech Soluciones', 'São Paulo - SP')">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </button>
-            <button class="btn btn-danger btn-sm" onclick="openChat('Tech Soluciones')">
-                <i class="fas fa-comment"></i> Chat (FAQ)
-            </button>
-        </div>
-        <div class="interacao">
-            <button onclick="tumbsUp('vaga1')"><i class="fas fa-thumbs-up"></i></button>
-            <button onclick="tumbsDown('vaga1')"><i class="fas fa-thumbs-down"></i></button>
-            <input type="text" class="comment-bar" placeholder="Comentar..." onkeydown="handleComment(event, vaga1)">
-        </div>
+    <div id="vagas-container">
+    <!-- Vagas serão renderizadas pelo JS -->
     </div>
 
-    <!-- Vaga 2 -->
-    <div class="vaga-card" id="vaga2">
-        <div class="vaga-header">
-            <img src="/6-Imagens/FotosPerfis/Tech4All.png" alt="Logo Empresa">
-            <div>
-                <h5>WebStart</h5>
-                <small>Tech 4All</small>
-            </div>
-        </div>
-        <div class="vaga-body">
-            <p><b>Cargo:</b> Designer UX/UI</p>
-            <p><b>Descrição:</b> Criação de protótipos e interfaces amigáveis para sites e apps.</p>
-            <p><b>Modalidade:</b> Remoto</p>
-            <p><b>Horário:</b> A combinar</p>
-            <p><b>Benficios:</b> Vale Alimentação | Vale Transporte</p>
-            <p><b>Localização:</b> Curitiba - PR</p>
-        </div>
-        <div class="vaga-footer">
-            <button class="btn btn-success btn-sm" onclick="openWhatsApp('WebStart', 'Curitiba - PR')">
-                <i class="fab fa-whatsapp"></i> WhatsApp
-            </button>
-            <button class="btn btn-danger btn-sm" onclick="openChat('WebStart')">
-                <i class="fas fa-comment"></i> Chat (FAQ)
-            </button>
-        </div>
-        <div class="interacao">
-            <button onclick="thumbsUp('vaga2')"><i class="fas fa-thumbs-up"></i></button>
-            <button onclick="thumbsDown('vaga2')"><i class="fas fa-thumbs-down"></i></button>
-            <input type="text" class="comment-bar" placeholder="Comentar..." onkeydown="handleComment(event, 'vaga2')">
-        </div>
-    </div>
 
-        <!-- Botão flutuante de nova publicação -->
+    <!-- Botão flutuante -->
     <button class="btn btn-primary btn-lg botao-publicar" title="Nova Publicação">
         <i class="fas fa-plus"></i>
     </button>
 
-    <script src="/5-Javascrip/home.js"></script>
-    <script src="/5-Javascrip/interacaoHome.js"></script>
-    <script src="/5-Javascrip/3-Auth/auth.js"></script>
+<!-- Modal para nova vaga -->
+    <div class="modal fade" id="modalVaga" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Nova Vaga</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
 
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-building"></i></span>
+            <input type="text" class="form-control" id="inputEmpresa" placeholder="Empresa">
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+            <input type="text" class="form-control" id="inputCargo" placeholder="Cargo">
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-align-left"></i></span>
+            <textarea class="form-control" id="inputDescricao" placeholder="Descrição"></textarea>
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-location-dot"></i></span>
+            <input type="text" class="form-control" id="inputModalidade" placeholder="Modalidade">
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-clock"></i></span>
+            <input type="text" class="form-control" id="inputHorario" placeholder="Horário">
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-gift"></i></span>
+            <input type="text" class="form-control" id="inputBeneficios" placeholder="Benefícios">
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+            <input type="text" class="form-control" id="inputLocalizacao" placeholder="Localização">
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-dollar-sign"></i></span>
+            <input type="text" class="form-control" id="inputSalario" placeholder="Salário">
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+            <input type="date" class="form-control" id="inputData">
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-tasks"></i></span>
+            <textarea class="form-control" id="inputRequisitos" placeholder="Requisitos"></textarea>
+            </div>
+
+            <div class="input-group mb-2">
+            <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email de contato">
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button id="btnSalvarVaga" class="btn btn-primary">Salvar</button>
+            <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="/5-Javascrip/3-Auth/auth.js"></script>
+    <script src="/5-Javascrip/interacaoHome.js"></script>
+    <script src="/5-Javascrip/4-CriarVaga/criarVaga.js"></script>
 </body>
 </html>

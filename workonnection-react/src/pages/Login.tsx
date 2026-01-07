@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "../styles/login.css";
+import "../style/login.css";
 import logo from "../assets/Logo Workonnection.png";
+import { Link, useNavigate } from "react-router-dom";
 
 type DadosCadastro = {
   nomeDadosPessoais?: string;
@@ -10,23 +11,15 @@ type DadosCadastro = {
 type FeedbackTipo = "erro" | "sucesso";
 
 export default function Login() {
-  const [email, setEmail] = useState<string>("");
-  const [senha, setSenha] = useState<string>("");
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
   const [mensagem, setMensagem] = useState<string | null>(null);
   const [tipo, setTipo] = useState<FeedbackTipo>("erro");
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-    setMensagem(null);
-  };
-
-  const handleSenhaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSenha(e.target.value);
-    setMensagem(null);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
     if (!email || !senha) {
       setTipo("erro");
@@ -43,15 +36,7 @@ export default function Login() {
       return;
     }
 
-    let dados: DadosCadastro;
-
-    try {
-      dados = JSON.parse(stored);
-    } catch {
-      setTipo("erro");
-      setMensagem("Erro ao processar os dados do usuário.");
-      return;
-    }
+    const dados: DadosCadastro = JSON.parse(stored);
 
     if (senha === dados.senhaDadosPessoais) {
       localStorage.setItem("usuarioLogado", email);
@@ -59,7 +44,7 @@ export default function Login() {
       setMensagem(`Bem-vindo(a), ${dados.nomeDadosPessoais || "Usuário"}!`);
 
       setTimeout(() => {
-        window.location.href = "/home";
+        navigate("/home");
       }, 1200);
     } else {
       setTipo("erro");
@@ -77,45 +62,25 @@ export default function Login() {
       </div>
 
       <div className="right">
-        <div className="form-box">
+        <div className="login-form-box">
           <img src={logo} alt="Logo Workonnection" className="logoLogin" />
 
-          {mensagem && (
-            <div className={`feedback ${tipo}`}>
-              {mensagem}
-            </div>
-          )}
+          {mensagem && <div className={`feedback ${tipo}`}>{mensagem}</div>}
 
           <form onSubmit={handleSubmit}>
-            <label htmlFor="email">
-              <span className="icon">
-                <i className="fas fa-envelope"></i>
-              </span>
-              Email:
-            </label>
-
+            <label>Email</label>
             <input
               type="email"
-              id="email"
-              placeholder="Insira o seu email"
               value={email}
-              onChange={handleEmailChange}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
 
-            <label htmlFor="senha">
-              <span className="icon">
-                <i className="fas fa-lock"></i>
-              </span>
-              Senha:
-            </label>
-
+            <label>Senha</label>
             <input
               type="password"
-              id="senha"
-              placeholder="Insira a sua senha"
               value={senha}
-              onChange={handleSenhaChange}
+              onChange={(e) => setSenha(e.target.value)}
               required
             />
 
@@ -123,7 +88,7 @@ export default function Login() {
           </form>
 
           <p className="cadastro">
-            Não é cadastrado? <a href="/cadastro">Cadastre-se</a>
+            Não é cadastrado? <Link to="/cadastro">Cadastre-se</Link>
           </p>
         </div>
       </div>

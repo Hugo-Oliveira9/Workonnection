@@ -6,10 +6,10 @@
 }
 
 html, body {
-    height: 100%;
     width: 100%;
-    overflow: hidden;
-    background-color: #f4f8fb;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* Container Principal */
@@ -58,16 +58,18 @@ html, body {
 }
 
 /* Formulário */
-.form-box {
-    width: 100%;
-    max-width: 420px;
-    text-align: center;
-    background-color: #fff;
-    padding: 36px;
-    transform: translateY(20px);
-    animation: fadeInForm 1s ease forwards;
-    animation-delay: 0.3s;
+
+
+.login-form-box {
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  background-color: #fff;
+  padding: 36px;
+  border: none;
+  box-shadow: none;
 }
+
 
 @keyframes fadeInForm {
     to {
@@ -179,11 +181,6 @@ button:active {
     .right {
         width: 100%;
         padding: 40px 20px;
-    }
-
-    .form-box {
-        padding: 30px 20px;
-        box-shadow: none;
     }
 
     .logoLogin {

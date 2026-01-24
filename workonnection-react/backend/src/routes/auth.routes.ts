@@ -1,57 +1,71 @@
 import { Router, Request, Response } from "express";
 import { Usuario } from "../types/Usuario";
-import { usuarios } from "../data/usuarios";
 
 const router = Router();
 
-//Rota cadastro
+// "Banco" em memória
+const usuarios: Usuario[] = [];
+
+// Rota de cadastro
 router.post("/cadastro", (req: Request, res: Response) => {
-    const {nome, email, senha} = req.body as Usuario;
+  const dados: Usuario = req.body;
 
-    if (!email || !senha){
-        return res.status(400).json({erro: "Email e senha são obrigatórios."});
-    }
+  if (!dados.emailDadosPessoais || !dados.senhaDadosPessoais) {
+    return res.status(400).json({
+      message: "Email e senha são obrigatórios."
+    });
+  }
 
-    const jaExiste = usuarios.find(u => u.email === email);
+  const jaExiste = usuarios.find(
+    (u) => u.emailDadosPessoais === dados.emailDadosPessoais
+  );
 
-    if (jaExiste){
-        return res.status(400).json({erro: "Usuário já cadastrado com esse email."})
-    }
+  if (jaExiste) {
+    return res.status(400).json({
+      message: "Usuário já cadastrado com esse email."
+    });
+  }
 
-    const novoUsuario: Usuario = {
-        nome,
-        email,
-        senha
-    };
+  usuarios.push(dados);
 
-    usuarios.push(novoUsuario);
+  console.log("Usuários cadastrados:", usuarios);
+
+  return res.status(201).json({
+    message: "Cadastro realizado com sucesso"
+  });
 });
 
-//rota login
+// Rota de login
 router.post("/login", (req: Request, res: Response) => {
-    const {email, senha} = req.body;
+  const { email, senha } = req.body;
 
-    if (!email || !senha) {
-        return res.status(400).json({erro: "Email e senha são obrigatórios."});
-    }
-
-    const usuario = usuarios.find(u => u.email === email);
-
-    if (!usuario) {
-        return res.status(401).json({erro: "Usuário não encontrado."});
-    }
-
-    if (usuario.senha != senha) {
-        return res.status(401).json({erro: "Senha incorreta."})
-    }
-
-    return res.json({
-        mensagem: `Bem-vindo(a), ${usuario.nome || "Usuário"}!`,
-        usuario: {
-            nome: usuario.nome,
-            email: usuario.email
-        }
+  if (!email || !senha) {
+    return res.status(400).json({
+      message: "Email e senha são obrigatórios."
     });
+  }
+
+  const usuario = usuarios.find(
+    (u) => u.emailDadosPessoais === email
+  );
+
+  if (!usuario) {
+    return res.status(401).json({
+      message: "Usuário não encontrado."
+    });
+  }
+
+  if (usuario.senhaDadosPessoais !== senha) {
+    return res.status(401).json({
+      message: "Email ou senha inválidos."
+    });
+  }
+
+  return res.json({
+    message: "Login realizado com sucesso",
+    nome: usuario.nomeDadosPessoais,
+    email: usuario.emailDadosPessoais
+  });
 });
 
 export default router;

@@ -3,11 +3,6 @@ import "../style/login.css";
 import logo from "../assets/Logo Workonnection.png";
 import { Link, useNavigate } from "react-router-dom";
 
-type DadosCadastro = {
-  nomeDadosPessoais?: string;
-  senhaDadosPessoais?: string;
-};
-
 type FeedbackTipo = "erro" | "sucesso";
 
 export default function Login() {
@@ -18,7 +13,7 @@ export default function Login() {
   const [mensagem, setMensagem] = useState<string | null>(null);
   const [tipo, setTipo] = useState<FeedbackTipo>("erro");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!email || !senha) {
@@ -27,28 +22,28 @@ export default function Login() {
       return;
     }
 
-    const chaveUsuario = `cadastroDados_${email}`;
-    const stored = localStorage.getItem(chaveUsuario);
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({email, senha}),
+      });
 
-    if (!stored) {
-      setTipo("erro");
-      setMensagem("Email ou senha inválidos.");
-      return;
-    }
+      const result = await response.json();
 
-    const dados: DadosCadastro = JSON.parse(stored);
+      if (!response.ok) {
+        setTipo("erro");
+        setMensagem(result.message || "Erro no Login");
+        return;
+      }
 
-    if (senha === dados.senhaDadosPessoais) {
-      localStorage.setItem("usuarioLogado", email);
       setTipo("sucesso");
-      setMensagem(`Bem-vindo(a), ${dados.nomeDadosPessoais || "Usuário"}!`);
-
-      setTimeout(() => {
-        navigate("/home");
-      }, 1200);
-    } else {
+      setMensagem(`Bem vindo(a), ${result.nome}!`)
+    }catch(error){
       setTipo("erro");
-      setMensagem("Email ou senha inválidos.");
+      setMensagem("Erro ao conectar com o servidor.");
     }
   };
 

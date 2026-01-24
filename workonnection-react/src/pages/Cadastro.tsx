@@ -3,7 +3,7 @@ import "../style/cadastro.css";
 import logo from "../assets/Logo Workonnection.png";
 import { useNavigate } from "react-router-dom";
 
-type TipoUsuario = "empresa" | "me" | "mei" | "estudante" | null
+type TipoUsuario = "empresa" | "me" | "mei" | "estudante" | null;
 
 type DadosCadastro = {
     nomeDadosPessoais: string;
@@ -31,9 +31,7 @@ export default function Cadastro() {
     const [mensagem, setMensagem] = useState<string | null>(null)
     const [tipoMsg, setTipoMsg] = useState<"erro" | "sucesso">("erro")
 
-    function handleChange(
-        e: React.ChangeEvent<HTMLInputElement>
-    ) {
+    function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
         const { name, value } = e.target;
         setDados((prev) => ({ ...prev, [name]: value }));
     }
@@ -45,7 +43,7 @@ export default function Cadastro() {
         }));
     }
 
-    function handleSubmit(e: React.FormEvent) {
+    async function handleSubmit(e: React.FormEvent) {
         e.preventDefault();
 
         if (!dados.emailDadosPessoais || !dados.senhaDadosPessoais) {
@@ -54,16 +52,33 @@ export default function Cadastro() {
             return;
         }
 
-        const chaveUsuario = `cadastro_${dados.emailDadosPessoais}`
+        try{
+            const response = await fetch("http://localhost:3000/auth/cadastro", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(dados),
+            });
 
-        localStorage.setItem(chaveUsuario, JSON.stringify(dados))
+            const result = await response.json();
 
-        setTipoMsg("sucesso")
-        setMensagem("Cadastro realizado com sucesso!")
+            if (!result.ok){
+                setMensagem("erro");
+                setMensagem(result.message || "Erro no cadastro");
+                return;
+            }
 
-        setTimeout(() => {
-            navigate("/")
-        }, 1500);
+            setTipoMsg("sucesso");
+            setMensagem("Cadastro realizado com sucesso!");
+
+            setTimeout(() => {
+                navigate("/");
+            }, 1500);
+        }catch(error){
+            setTipoMsg("erro");
+            setMensagem("Erro ao conectar com o servidor.");
+        }
     }
 
     return (

@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import "../style/login.css";
-import logo from "../assets/Logo Workonnection.png";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { apiPost } from "../services/api";
+import { Feedback } from "../components/Feedback";
+import logo from "../assets/Logo Workonnection.png";
+import "../style/login.css";
 
 type FeedbackTipo = "erro" | "sucesso";
 
@@ -23,29 +25,22 @@ export default function Login() {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({email, senha}),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        setTipo("erro");
-        setMensagem(result.message || "Erro no Login");
-        return;
-      }
+      const result = await apiPost<{nome: string}>(
+        "/auth/login",
+        {email, senha}
+      );
 
       setTipo("sucesso");
-      setMensagem(`Bem vindo(a), ${result.nome}!`)
-    }catch(error){
+      setMensagem(`Bem vindo(a) ${result.nome}!`);
+
+      setTimeout(() => {
+        navigate("/");
+      }, 1500);
+    }catch (error: any){
       setTipo("erro");
-      setMensagem("Erro ao conectar com o servidor.");
+      setMensagem(error.message);
     }
-  };
+  }
 
   return (
     <div className="container">
@@ -60,7 +55,7 @@ export default function Login() {
         <div className="login-form-box">
           <img src={logo} alt="Logo Workonnection" className="logoLogin" />
 
-          {mensagem && <div className={`feedback ${tipo}`}>{mensagem}</div>}
+          {mensagem && <Feedback mensagem={mensagem} tipo={tipo}/>}
 
           <form onSubmit={handleSubmit}>
             <label>Email</label>

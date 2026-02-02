@@ -1,7 +1,9 @@
-import React, { useState } from "react";
-import "../style/cadastro.css";
-import logo from "../assets/Logo Workonnection.png";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiPost } from "../services/api";
+import { Feedback } from "../components/Feedback";
+import logo from "../assets/Logo Workonnection.png";
+import "../style/cadastro.css";
 
 type TipoUsuario = "empresa" | "me" | "mei" | "estudante" | null;
 
@@ -53,27 +55,13 @@ export default function Cadastro() {
         }
 
         try{
-            const response = await fetch("http://localhost:3000/auth/cadastro", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(dados),
-            });
-
-            const result = await response.json();
-
-            if (!result.ok){
-                setMensagem("erro");
-                setMensagem(result.message || "Erro no cadastro");
-                return;
-            }
-
+            await apiPost("/auth/cadastro", dados);
+            
             setTipoMsg("sucesso");
             setMensagem("Cadastro realizado com sucesso!");
 
             setTimeout(() => {
-                navigate("/");
+                navigate("/login");
             }, 1500);
         }catch(error){
             setTipoMsg("erro");
@@ -92,11 +80,7 @@ export default function Cadastro() {
                 <section className="form-box">
                     <h2>Dados Pessoais</h2>
 
-                    {mensagem && (
-                        <div className={`feedback ${tipoMsg}`}>
-                            {mensagem}
-                        </div>
-                    )}
+                    {mensagem && <Feedback mensagem={mensagem} tipo={tipoMsg}/>}
 
                     <form onSubmit={handleSubmit}>
                         <div className="form-row">

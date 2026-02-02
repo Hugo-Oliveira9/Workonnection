@@ -1,12 +1,10 @@
 import { Router, Request, Response } from "express";
+import { usuarios } from "../data/usuarios";
 import { Usuario } from "../types/Usuario";
 
 const router = Router();
 
-// "Banco" em memória
-const usuarios: Usuario[] = [];
-
-// Rota de cadastro
+// CADASTRO
 router.post("/cadastro", (req: Request, res: Response) => {
   const dados: Usuario = req.body;
 
@@ -17,7 +15,7 @@ router.post("/cadastro", (req: Request, res: Response) => {
   }
 
   const jaExiste = usuarios.find(
-    (u) => u.emailDadosPessoais === dados.emailDadosPessoais
+    u => u.emailDadosPessoais === dados.emailDadosPessoais
   );
 
   if (jaExiste) {
@@ -28,14 +26,12 @@ router.post("/cadastro", (req: Request, res: Response) => {
 
   usuarios.push(dados);
 
-  console.log("Usuários cadastrados:", usuarios);
-
   return res.status(201).json({
     message: "Cadastro realizado com sucesso"
   });
 });
 
-// Rota de login
+// LOGIN
 router.post("/login", (req: Request, res: Response) => {
   const { email, senha } = req.body;
 
@@ -46,16 +42,10 @@ router.post("/login", (req: Request, res: Response) => {
   }
 
   const usuario = usuarios.find(
-    (u) => u.emailDadosPessoais === email
+    u => u.emailDadosPessoais === email
   );
 
-  if (!usuario) {
-    return res.status(401).json({
-      message: "Usuário não encontrado."
-    });
-  }
-
-  if (usuario.senhaDadosPessoais !== senha) {
+  if (!usuario || usuario.senhaDadosPessoais !== senha) {
     return res.status(401).json({
       message: "Email ou senha inválidos."
     });

@@ -27,7 +27,10 @@ export default function Login() {
     try {
       const result = await apiPost<{nome: string}>(
         "/auth/login",
-        {email, senha}
+        {
+          emailDadosPessoais: email, 
+          senhaDadosPessoais: senha
+        }
       );
 
       setTipo("sucesso");

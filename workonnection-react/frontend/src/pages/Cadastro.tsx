@@ -61,7 +61,7 @@ export default function Cadastro() {
             setMensagem("Cadastro realizado com sucesso!");
 
             setTimeout(() => {
-                navigate("/login");
+                navigate("/");
             }, 1500);
         }catch(error){
             setTipoMsg("erro");

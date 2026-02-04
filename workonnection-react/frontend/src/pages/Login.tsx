@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { apiPost } from "../services/api";
 import { Feedback } from "../components/Feedback";
+import { setUsuarioLogado } from "../services/authSession";
 import logo from "../assets/Logo Workonnection.png";
 import "../style/login.css";
 
@@ -25,19 +26,22 @@ export default function Login() {
     }
 
     try {
-      const result = await apiPost<{nome: string}>(
-        "/auth/login",
-        {
+      const result = await apiPost<{
+        nome: string;
+        email: string;
+        tipoUsuario: string;
+      }>("/auth/login",{
           emailDadosPessoais: email, 
           senhaDadosPessoais: senha
-        }
-      );
+      });
+
+      setUsuarioLogado(result.email);
 
       setTipo("sucesso");
       setMensagem(`Bem vindo(a) ${result.nome}!`);
 
       setTimeout(() => {
-        navigate("/");
+        navigate("/home");
       }, 1500);
     }catch (error: any){
       setTipo("erro");

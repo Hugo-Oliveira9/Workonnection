@@ -2,7 +2,6 @@ import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/auth.routes";
 import vagasRoutes from "./routes/vagas.routes";
-import { autenticarUsuario } from "./middlewares/authUsuario";
 
 export const app = express();
 

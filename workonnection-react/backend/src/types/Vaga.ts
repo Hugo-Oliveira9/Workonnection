@@ -11,7 +11,6 @@ export type Vaga = {
   salario?: string;
   data?: string;
   requisitos?: string;
-  email?: string;
   
   criadoPor?: string;
 };

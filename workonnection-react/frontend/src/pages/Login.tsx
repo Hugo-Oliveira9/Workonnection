@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { apiPost } from "../services/api";
 import { Feedback } from "../components/Feedback";
-import { setUsuarioLogado } from "../services/authSession";
+import { useAuth } from "../contexts/authContext";
 import logo from "../assets/Logo Workonnection.png";
 import "../style/login.css";
 
@@ -10,6 +10,7 @@ type FeedbackTipo = "erro" | "sucesso";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -35,7 +36,7 @@ export default function Login() {
           senhaDadosPessoais: senha
       });
 
-      setUsuarioLogado(result.email);
+      login(result.email);
 
       setTipo("sucesso");
       setMensagem(`Bem vindo(a) ${result.nome}!`);

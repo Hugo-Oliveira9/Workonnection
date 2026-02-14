@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Vaga } from "../types/Vaga";
 import { listarVagas, criarVaga } from "../services/vagasApi";
-import { getUsuarioLogado } from "../services/authSession";
 import { VagaCard } from "../components/VagaCard";
 import { Topbar } from "../components/Topbar";
 import { NovaVagaModal } from "../components/NovaVagaModal";
+import { useAuth } from "../contexts/authContext";
 import "../style/home.css";
 
 export default function Home(){
@@ -12,55 +12,48 @@ export default function Home(){
     const [showModal, setShowModal] = useState(false);
     const [pesquisa, setPesquisa] = useState("");
 
+    const { usuario } = useAuth();
+
     useEffect(() => {
-        async function carregarVagas() {
-            try {
-                const lista = await listarVagas();
-                setVagas(lista);
-            }catch (err: any){
-                alert(err.message);
-            }
-        }
-        carregarVagas();
+      listarVagas().then(setVagas).catch(err => alert(err.message));
     }, []);
 
     const vagasFiltradas = vagas.filter(
-        (v) => 
+        v => 
             v.cargo.toLowerCase().includes(pesquisa.toLowerCase()) ||
             v.empresa.toLowerCase().includes(pesquisa.toLowerCase())
     );
 
-    const handleSalvarVaga = async (novaVaga: Vaga) => {
-        try {
-            const vagaCriada = await criarVaga(novaVaga);
-            setVagas((prev) => [vagaCriada.vaga, ...prev]);
-            setShowModal(false);
-        }catch (err: any){
-            alert(err.message);
-        }
+    const handleSalvarVaga = async (vaga: Vaga) => {
+      if (!usuario) {
+        alert("Usuário não logado");
+        return;
+      }
+
+      try {
+          const res = await criarVaga(vaga, usuario);
+          setVagas(prev => [res.vaga, ...prev]);
+          setShowModal(false);
+      }catch (err: any){
+          alert(err.message);
+      }
     };
 
-      return (
+  return (
     <div>
       <Topbar pesquisa={pesquisa} setPesquisa={setPesquisa} />
 
-      <div className="filtros-vagas">
-        <div className="filtro-item ativo">
-          <i className="fas fa-briefcase"></i> Todas as vagas
-        </div>
-      </div>
-
       <div id="vagas-container">
-        {vagasFiltradas.map((vaga, idx) => (
-          <VagaCard key={idx} vaga={vaga} />
+        {vagasFiltradas.map(vaga => (
+          <VagaCard key={vaga.id} vaga={vaga} />
         ))}
       </div>
 
       <button
-        className="btn btn-primary btn-lg botao-publicar"
+        className="botao-publicar"
         onClick={() => setShowModal(true)}
       >
-        <i className="fas fa-plus"></i>
+        +
       </button>
 
       {showModal && (

@@ -1,4 +1,14 @@
 import { Vaga } from "../types/Vaga";
+import {
+  FaBuilding,
+  FaBriefcase,
+  FaClock,
+  FaMapMarkerAlt,
+  FaMoneyBillWave,
+  FaGift,
+  FaLaptopCode,
+  FaClipboardList
+} from "react-icons/fa";
 
 type Props = {
   vaga: Vaga;
@@ -7,13 +17,42 @@ type Props = {
 export function VagaCard({ vaga }: Props) {
   return (
     <div className="vaga-card">
-      <div className="vaga-body">
-        <p><strong>Empresa:</strong> {vaga.empresa}</p>
-        <p><strong>Cargo:</strong> {vaga.cargo}</p>
-        <p>{vaga.descricao}</p>
-        <p><strong>Modalidade:</strong> {vaga.modalidade}</p>
-        <p><strong>Salário:</strong> {vaga.salario}</p>
+
+      <div className="vaga-titulo">
+        <h3>{vaga.cargo}</h3>
+        <span>{vaga.empresa}</span>
       </div>
+
+      <p className="vaga-descricao">{vaga.descricao}</p>
+
+      <ul className="vaga-info-list">
+
+        <li>
+          <FaLaptopCode /> {vaga.modalidade}
+        </li>
+
+        <li>
+          <FaClock /> {vaga.horario}
+        </li>
+
+        <li>
+          <FaMapMarkerAlt /> {vaga.localizacao}
+        </li>
+
+        <li>
+          <FaMoneyBillWave /> {vaga.salario}
+        </li>
+
+        <li>
+          <FaGift /> {vaga.beneficios}
+        </li>
+
+        <li>
+          <FaClipboardList /> {vaga.requisitos}
+        </li>
+
+      </ul>
+
     </div>
   );
 }

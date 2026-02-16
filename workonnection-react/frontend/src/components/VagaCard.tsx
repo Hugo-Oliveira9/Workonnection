@@ -12,9 +12,11 @@ import {
 
 type Props = {
   vaga: Vaga;
+  onEditar: (vaga: Partial<Vaga>) => void;
+  onExcluir: () => void;
 };
 
-export function VagaCard({ vaga }: Props) {
+export function VagaCard({ vaga, onEditar, onExcluir }: Props) {
   return (
     <div className="vaga-card">
 
@@ -52,6 +54,29 @@ export function VagaCard({ vaga }: Props) {
         </li>
 
       </ul>
+
+      <div className="vaga-footer">
+        
+        <button
+          className="btn-success"
+          onClick={() =>
+            onEditar({
+              cargo: prompt("Novo cargo:", vaga.cargo) || vaga.cargo,
+              descricao: prompt("Nova descrição:", vaga.descricao) || vaga.descricao
+            })
+          }
+        >
+          ✏️ Editar
+        </button>
+
+        <button
+          className="btn-danger"
+          onClick={onExcluir}
+        >
+          🗑 Excluir
+        </button>
+
+      </div>
 
     </div>
   );

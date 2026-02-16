@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Vaga } from "../types/Vaga";
-import { listarVagas, criarVaga } from "../services/vagasApi";
+import { listarVagas, criarVaga, editarVaga, excluirVaga } from "../services/vagasApi";
 import { VagaCard } from "../components/VagaCard";
 import { Topbar } from "../components/Topbar";
 import { NovaVagaModal } from "../components/NovaVagaModal";
@@ -45,7 +45,28 @@ export default function Home(){
 
       <div id="vagas-container">
         {vagasFiltradas.map(vaga => (
-          <VagaCard key={vaga.id} vaga={vaga} />
+          <VagaCard 
+            key={vaga.id} 
+            vaga={vaga}
+            onEditar={async (dados) => {
+              if (!usuario) return;
+
+              const res = await editarVaga(vaga.id!, dados, usuario);
+
+              setVagas(prev =>
+                prev.map(v => v.id === vaga.id ? res.vaga: v)
+              );
+            }} 
+            onExcluir={async () => {
+              if (!usuario) return;
+
+              await excluirVaga(vaga.id!, usuario);
+
+              setVagas(prev =>
+                prev.filter(v => v.id !== vaga.id)
+              );
+            }}
+          />
         ))}
       </div>
 

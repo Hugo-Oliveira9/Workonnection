@@ -100,10 +100,11 @@ router.delete("/:id", autenticarUsuario, (req: Request, res: Response) => {
         return res.status(403).json({ message: "Você não pode excluir essa vaga." });
     }
 
-    vagas.splice(index, 1);
+    const vagaRemovida = vagas.splice(index, 1)[0];
 
     return res.json({
-        message: "Vaga excluída com sucesso."
+        message: "Vaga excluída com sucesso.",
+        vaga: vagaRemovida
     });
 });
 

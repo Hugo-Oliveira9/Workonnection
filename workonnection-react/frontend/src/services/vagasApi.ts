@@ -34,3 +34,37 @@ export async function criarVaga(vaga: Vaga, email: string) {
 
   return data;
 }
+
+export async function editarVaga(
+  id: string,
+  vaga: Partial<Vaga>,
+  email: string
+) {
+  const res = await fetch(`${API_URL}/vagas/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      "user-email": email
+    },
+    body: JSON.stringify(vaga)
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) throw new Error(data.message);
+  return data;
+}
+
+export async function excluirVaga(id: string, email: string) {
+  const res = await fetch(`${API_URL}/vagas/${id}`, {
+    method: "DELETE",
+    headers: {
+      "user-email": email
+    }
+  });
+
+  const data = await res.json();
+  
+  if (!res.ok) throw new Error(data.message);
+  return data;
+}

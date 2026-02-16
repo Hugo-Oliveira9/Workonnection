@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { apiPost } from "../services/api";
-import { Feedback } from "../components/Feedback";
-import { useAuth } from "../contexts/authContext";
-import logo from "../assets/Logo Workonnection.png";
-import "../style/login.css";
+import { apiPost } from "../../services/api";
+import { Feedback } from "../../components/Feedback";
+import { useAuth } from "../../contexts/authContext";
+import logo from "../../assets/Logo Workonnection.png";
+import "./login.css";
 
 type FeedbackTipo = "erro" | "sucesso";
 
@@ -66,19 +66,19 @@ export default function Login() {
           {mensagem && <Feedback mensagem={mensagem} tipo={tipo}/>}
 
           <form onSubmit={handleSubmit}>
-            <label>Email</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              placeholder="Digite seu E-mail"
               required
             />
 
-            <label>Senha</label>
             <input
               type="password"
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
+              placeholder="Digite sua Senha"
               required
             />
 

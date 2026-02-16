@@ -1,13 +1,13 @@
+import { useState } from "react";
 import { Vaga } from "../types/Vaga";
 import {
-  FaBuilding,
-  FaBriefcase,
   FaClock,
   FaMapMarkerAlt,
   FaMoneyBillWave,
   FaGift,
   FaLaptopCode,
-  FaClipboardList
+  FaClipboardList,
+  FaEllipsisV
 } from "react-icons/fa";
 
 type Props = {
@@ -17,67 +17,115 @@ type Props = {
 };
 
 export function VagaCard({ vaga, onEditar, onExcluir }: Props) {
+  const [menuAberto, setMenuAberto] = useState(false);
+  const [editando, setEditando] = useState(false);
+
+  const [form, setForm] = useState({ ...vaga });
+
+  function handleChange(
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  }
+
+  function salvarEdicao() {
+    onEditar(form);
+    setEditando(false);
+  }
+
   return (
     <div className="vaga-card">
 
-      <div className="vaga-titulo">
-        <h3>{vaga.cargo}</h3>
-        <span>{vaga.empresa}</span>
+      {/* MENU 3 PONTOS */}
+      <div className="vaga-menu">
+        <FaEllipsisV onClick={() => setMenuAberto(!menuAberto)} />
+
+        {menuAberto && (
+          <div className="vaga-dropdown">
+            <button onClick={() => {
+              setEditando(true);
+              setMenuAberto(false);
+            }}>
+              ✏️ Editar
+            </button>
+
+            <button onClick={onExcluir}>
+              🗑 Excluir
+            </button>
+          </div>
+        )}
       </div>
 
-      <p className="vaga-descricao">{vaga.descricao}</p>
+      {/* TÍTULO */}
+      {editando ? (
+        <>
+          <input
+            name="cargo"
+            value={form.cargo}
+            onChange={handleChange}
+            className="edit-input"
+          />
+          <input
+            name="empresa"
+            value={form.empresa}
+            onChange={handleChange}
+            className="edit-input"
+          />
+        </>
+      ) : (
+        <div className="vaga-titulo">
+          <h3>{vaga.cargo}</h3>
+          <span>{vaga.empresa}</span>
+        </div>
+      )}
 
+      {/* DESCRIÇÃO */}
+      {editando ? (
+        <textarea
+          name="descricao"
+          value={form.descricao}
+          onChange={handleChange}
+          className="edit-textarea"
+        />
+      ) : (
+        <p className="vaga-descricao">{vaga.descricao}</p>
+      )}
+
+      {/* INFO */}
       <ul className="vaga-info-list">
-
-        <li>
-          <FaLaptopCode /> {vaga.modalidade}
-        </li>
-
-        <li>
-          <FaClock /> {vaga.horario}
-        </li>
-
-        <li>
-          <FaMapMarkerAlt /> {vaga.localizacao}
-        </li>
-
-        <li>
-          <FaMoneyBillWave /> {vaga.salario}
-        </li>
-
-        <li>
-          <FaGift /> {vaga.beneficios}
-        </li>
-
-        <li>
-          <FaClipboardList /> {vaga.requisitos}
-        </li>
-
+        {["modalidade","horario","localizacao","salario","beneficios","requisitos"].map((campo, i) => (
+          <li key={i}>
+            {editando ? (
+              <input
+                name={campo}
+                value={(form as any)[campo] || ""}
+                onChange={handleChange}
+                className="edit-mini"
+              />
+            ) : (
+              (vaga as any)[campo]
+            )}
+          </li>
+        ))}
       </ul>
 
-      <div className="vaga-footer">
-        
-        <button
-          className="btn-success"
-          onClick={() =>
-            onEditar({
-              cargo: prompt("Novo cargo:", vaga.cargo) || vaga.cargo,
-              descricao: prompt("Nova descrição:", vaga.descricao) || vaga.descricao
-            })
-          }
-        >
-          ✏️ Editar
-        </button>
-
-        <button
-          className="btn-danger"
-          onClick={onExcluir}
-        >
-          🗑 Excluir
-        </button>
-
-      </div>
-
+      {/* BOTÕES DE EDIÇÃO */}
+      {editando && (
+        <div className="vaga-footer">
+          <button className="btn-success" onClick={salvarEdicao}>
+            💾 Salvar
+          </button>
+          <button
+            className="btn-danger"
+            onClick={() => {
+              setForm(vaga);
+              setEditando(false);
+            }}
+          >
+            Cancelar
+          </button>
+        </div>
+      )}
     </div>
   );
 }

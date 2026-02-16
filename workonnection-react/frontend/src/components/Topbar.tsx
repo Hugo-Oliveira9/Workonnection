@@ -1,4 +1,4 @@
-import "../style/home.css";
+import "../pages/Home/home.css";
 import logo from "../assets/Logo Workonnection.png";
 
 type Props = {

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { Vaga } from "../types/Vaga";
-import { listarVagas, criarVaga, editarVaga, excluirVaga } from "../services/vagasApi";
-import { VagaCard } from "../components/VagaCard";
-import { Topbar } from "../components/Topbar";
-import { NovaVagaModal } from "../components/NovaVagaModal";
-import { useAuth } from "../contexts/authContext";
-import "../style/home.css";
+import { Vaga } from "../../types/Vaga";
+import { listarVagas, criarVaga, editarVaga, excluirVaga } from "../../services/vagasApi";
+import { VagaCard } from "../../components/VagaCard";
+import { Topbar } from "../../components/Topbar";
+import { NovaVagaModal } from "../../components/NovaVagaModal";
+import { useAuth } from "../../contexts/authContext";
+import "./home.css";
 
 export default function Home(){
     const [vagas, setVagas] = useState<Vaga[]>([]);

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { apiPost } from "../services/api";
-import { Feedback } from "../components/Feedback";
-import logo from "../assets/Logo Workonnection.png";
-import "../style/cadastro.css";
+import { apiPost } from "../../services/api";
+import { Feedback } from "../../components/Feedback";
+import logo from "../../assets/Logo Workonnection.png";
+import "./cadastro.css";
 
 type TipoUsuario = "empresa" | "me" | "mei" | "estudante" | null;
 
@@ -90,6 +90,7 @@ export default function Cadastro() {
                                     name="nomeDadosPessoais"
                                     value={dados.nomeDadosPessoais}
                                     onChange={handleChange}
+                                    placeholder="Digite seu nome"
                                     required
                                 />
                             </div>
@@ -100,6 +101,7 @@ export default function Cadastro() {
                                     name="cpfDadosPessoais"
                                     value={dados.cpfDadosPessoais}
                                     onChange={handleChange}
+                                    placeholder="Digite seu CPF"
                                     required
                                 />
                             </div>
@@ -123,6 +125,7 @@ export default function Cadastro() {
                                     name="telefoneDadosPessoais"
                                     value={dados.telefoneDadosPessoais}
                                     onChange={handleChange}
+                                    placeholder="Digite seu Telefone (DDD)"
                                     required
                                 />
                             </div>
@@ -136,6 +139,7 @@ export default function Cadastro() {
                                     name="emailDadosPessoais"
                                     value={dados.emailDadosPessoais}
                                     onChange={handleChange}
+                                    placeholder="Digite seu E-mail"
                                     required
                                 />
                             </div>
@@ -147,6 +151,7 @@ export default function Cadastro() {
                                     name="senhaDadosPessoais"
                                     value={dados.senhaDadosPessoais}
                                     onChange={handleChange}
+                                    placeholder="Digite sua Senha"
                                     required
                                 />
                             </div>
